@@ -3,10 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>RustCargo - rust技术分享</title>
+  <title>错误处理 - RustCargo - rust技术分享</title>
   
-<link rel="alternate" hreflang="" href="https://www.rustcargo.com/en/" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -25,7 +23,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="rust 技术分享社区." />
+  <meta name="description" content="就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。
+" />
+
   <meta name="keywords" content="rust, llvm, golang" />
 
 
@@ -36,8 +36,8 @@
 <meta name="generator" content="Hugo 0.59.1" />
 
 
-<link rel="canonical" href="https://www.rustcargo.com/" />
-<link href="/index.xml" rel="alternate" type="application/rss+xml" title="RustCargo - rust技术分享" />
+<link rel="canonical" href="https://www.rustcargo.com/post/001_panic_error/" />
+
 
 
 
@@ -60,18 +60,26 @@
 
 
 
-<meta property="og:title" content="RustCargo - rust技术分享" />
-<meta property="og:description" content="rust 技术分享社区." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.rustcargo.com/" />
+<meta property="og:title" content="错误处理" />
+<meta property="og:description" content="就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.rustcargo.com/post/001_panic_error/" />
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust技术分享" />
+<meta itemprop="name" content="错误处理">
+<meta itemprop="description" content="就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。">
 
-<meta property="og:updated_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust技术分享" />
-<meta itemprop="name" content="RustCargo - rust技术分享">
-<meta itemprop="description" content="rust 技术分享社区.">
 
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="989">
+
+
+
+<meta itemprop="keywords" content="rust,panic,Result,错误," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="RustCargo - rust技术分享"/>
-<meta name="twitter:description" content="rust 技术分享社区."/>
+<meta name="twitter:title" content="错误处理"/>
+<meta name="twitter:description" content="就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -236,7 +244,7 @@
   <ul id="menu" class="menu">
     
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -321,120 +329,281 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-<section id="posts" class="posts">
-  
-  
+          <article class="post bg-white">
     
-  
-  
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
+    <header class="post-header">
+      <h1 class="post-title">错误处理</h1>
       
-        <span class="post-pinned">
-          <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
-  width="32" height="32">
-  <path d="M682.666667 512V170.666667h42.666666V85.333333H298.666667v85.333334h42.666666v341.333333l-85.333333 85.333333v85.333334h221.866667v256h68.266666v-256H768v-85.333334l-85.333333-85.333333z"></path>
+      <div class="post-meta">
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
+        </time>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 989 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-panic-与不可恢复错误">1 <code>panic!</code>与不可恢复错误</a></li>
+<li><a href="#2-result-与可恢复错误">2 <code>Result</code>与可恢复错误</a>
+<ul>
+<li><a href="#2-1-失败时-panic-的简写-unwrap-和-expect">2.1 失败时<code>panic</code>的简写：<code>unwrap</code>和<code>expect</code></a></li>
+<li><a href="#2-2-传播错误">2.2 传播错误</a>
+<ul>
+<li><a href="#2-2-1-传播错误的简写">2.2.1 传播错误的简写：<code>?</code></a></li>
+</ul></li>
+<li><a href="#2-3-result-类型的方法">2.3 <code>Result</code>类型的方法</a></li>
+</ul></li>
+<li><a href="#3-何时使用-panic">3 何时使用<code>panic!</code></a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。</p>
+
+<h2 id="1-panic-与不可恢复错误">1 <code>panic!</code>与不可恢复错误</h2>
+
+<ul>
+<li><p>程序<code>panic!</code>时，默认行为是展开（unwinding），但也可以选择终止（abort）</p>
+
+<pre><code>[profile.release]
+panic = 'abort'
+</code></pre></li>
+
+<li><p>调试运行时，设置环境变量<code>RUST_BACKTRACE=1</code>，可以在<code>panic!</code>时显示详细的调用栈</p>
+
+<pre><code>$ RUST_BACKTRACE=1 cargo run
+Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+ Running `target/debug/panic`
+thread 'main' panicked at 'index out of bounds: the len is 3 but the index is 99', /checkout/src/liballoc/vec.rs:1555:10
+stack backtrace:
+0: std::sys:👿:backtrace::tracing:👿:unwind_backtrace
+         at /checkout/src/libstd/sys/unix/backtrace/tracing/gcc_s.rs:49
+1: std::sys_common::backtrace::_print
+         at /checkout/src/libstd/sys_common/backtrace.rs:71
+......
+</code></pre></li>
+</ul>
+
+<h2 id="2-result-与可恢复错误">2 <code>Result</code>与可恢复错误</h2>
+
+<ul>
+<li><p>标准库中的<code>std::result::Result</code>表示可恢复错误</p>
+
+<pre><code class="language-rust">pub enum Result&lt;T, E&gt; {
+Ok(T),
+Err(E),
+}
+</code></pre>
+
+<pre><code class="language-rust">use std::fs::File;
+use std::io::ErrorKind;
+
+pub fn main() {
+	let f = File::open(&quot;hello.txt&quot;);
+	let f = match f {
+		Ok(file) =&gt; file,
+		Err(ref error) if error.kind() == ErrorKind::NotFound =&gt; {
+			match File::create(&quot;hello.txt&quot;) {
+				Ok(fc) =&gt; fc,
+				Err(e) =&gt; panic!(&quot;Tried to create file but there was a problem: {:?}&quot;,e),
+			}
+		},
+		Err(error) =&gt; panic!(&quot;There was a problem opening the file: {:?}&quot;, error),
+	};
+}
+</code></pre></li>
+</ul>
+
+<h3 id="2-1-失败时-panic-的简写-unwrap-和-expect">2.1 失败时<code>panic</code>的简写：<code>unwrap</code>和<code>expect</code></h3>
+
+<pre><code class="language-rust">use std::fs::File;
+fn main() {
+    let f = File::open(&quot;hello.txt&quot;).unwrap();
+}
+</code></pre>
+
+<pre><code class="language-rust">use std::fs::File;
+fn main() {
+    let f = File::open(&quot;hello.txt&quot;).expect(&quot;Failed to open hello.txt&quot;);
+}
+</code></pre>
+
+<h3 id="2-2-传播错误">2.2 传播错误</h3>
+
+<pre><code class="language-rust">use std::io;
+use std::io::Read;
+use std::fs::File;
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+    let f = File::open(&quot;hello.txt&quot;);
+    let mut f = match f {
+        Ok(file) =&gt; file,
+        Err(e) =&gt; return Err(e),
+    };
+
+    let mut s = String::new();
+    match f.read_to_string(&amp;mut s) {
+        Ok(_) =&gt; Ok(s),
+        Err(e) =&gt; Err(e),
+    }
+}
+</code></pre>
+
+<h4 id="2-2-1-传播错误的简写">2.2.1 传播错误的简写：<code>?</code></h4>
+
+<ul>
+<li>注意：如果错误类型不同于返回的<code>Result</code>类型所需的错误类型，则尝试使用<code>From</code>特性来来进行类型转换</li>
+<li>注意：<code>?</code>可以链式调用</li>
+
+<li><p>注意：<code>?</code>只能用于返回<code>Result</code>类型的函数</p>
+
+<pre><code class="language-rust">use std::io;
+use std::io::Read;
+use std::fs::File;
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+let mut f = File::open(&quot;hello.txt&quot;)?;
+let mut s = String::new();
+f.read_to_string(&amp;mut s)?;
+Ok(s)
+}
+
+fn read_username_from_file2() -&gt; Result&lt;String, io::Error&gt; {
+let mut s = String::new();
+File::open(&quot;hello.txt&quot;)?.read_to_string(&amp;mut s)?;
+Ok(s)
+}
+</code></pre></li>
+</ul>
+
+<h3 id="2-3-result-类型的方法">2.3 <code>Result</code>类型的方法</h3>
+
+<ul>
+<li><code>Result&lt;T,E&gt;</code></li>
+<li><code>pub fn is_ok(&amp;self) -&gt; bool</code></li>
+<li><code>pub fn is_err(&amp;self) -&gt; bool</code></li>
+<li><code>pub fn ok(self) -&gt; Option&lt;T&gt;</code></li>
+
+<li><p><code>pub fn err(self) -&gt; Option&lt;E&gt;</code></p></li>
+
+<li><p><code>pub fn unwrap(self) -&gt; T where E: Debug</code>// 注意: 错误类型E必须实现了Debug特性</p></li>
+
+<li><p><code>pub fn expect(self, msg: &amp;str) -&gt; T where E: Debug</code>// 注意: 错误类型E必须实现了Debug特性</p></li>
+
+<li><p><code>pub fn unwrap_err(self) -&gt; E where T: Debug</code>// 注意: 反过来,返回E类型;如果成功则panic</p></li>
+
+<li><p><code>pub fn expect_err(self) -&gt; E where T: Debug</code>// 注意: 反过来,返回E类型;如果成功则panic</p></li>
+
+<li><p><code>pub fn unwrap_or_default(self) -&gt; T where T:Default</code>// 出错时返回默认值</p></li>
+
+<li><p><code>pub fn unwrap_or(self, optb: T) -&gt; T</code>// 出错则返回参数指定的值</p></li>
+
+<li><p><code>pub fn unwrap_or_else&lt;F: FnOnce(E) -&gt; T&gt;(self, op: F) -&gt; T</code>// 出错则调用指定的函数转化错误</p></li>
+
+<li><p><code>pub fn or&lt;F&gt;(self, res: Result&lt;T, F&gt;) -&gt; Result&lt;T, F&gt;</code></p></li>
+
+<li><p><code>pub fn or_else&lt;F, O: FnOnce(E) -&gt; Result&lt;T, F&gt;&gt;(self, op: O) -&gt; Result&lt;T, F&gt;</code></p></li>
+
+<li><p><code>pub fn map&lt;U, F: FnOnce(T) -&gt; U&gt;(self, op: F) -&gt; Result&lt;U,E&gt;</code>// 映射成另一种T类型</p></li>
+
+<li><p><code>pub fn map_err&lt;F, O: FnOnce(E) -&gt; F&gt;(self, op: O) -&gt; Result&lt;T,F&gt;</code></p></li>
+</ul>
+
+<h2 id="3-何时使用-panic">3 何时使用<code>panic!</code></h2>
+
+<ul>
+<li><code>panic!</code>会不可避免地导致进程异常退出，通常情况下返回<code>Result</code>类型更好</li>
+<li>示例、代码原型、测试时适合使用<code>panic!</code></li>
+
+<li><p>比编译器知道得更多，明确知道不会出错时，可以调用<code>unwrap()</code></p>
+
+<pre><code class="language-rust">use std::net::IpAddr;
+let home: IpAddr = &quot;127.0.0.1&quot;.parse().unwrap();
+</code></pre></li>
+</ul>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          <a href="https://www.rustcargo.com/tags/panic/">panic</a>
+          <a href="https://www.rustcargo.com/tags/result/">Result</a>
+          <a href="https://www.rustcargo.com/tags/%E9%94%99%E8%AF%AF/">错误</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/book-docs/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
 </svg>
 
-        </span>
-      
-      <a class="post-link" href="/post/book-docs/">Rust在线文档</a>
-    </h1>
+            </i>
+            <span class="prev-text nav-default">Rust在线文档</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
     
-    <div class="post-meta">
-      <time datetime="2018-01-01" class="post-time">
-        2018-01-01
-      </time>
-      <div class="post-category">
-          <a href="https://www.rustcargo.com/categories/%E6%96%87%E6%A1%A3/"> 文档 </a>
-          
-        </div>
-      <span class="more-meta"> 约 16 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      在线阅读 Rust 程序设计语言（第二版)
-    </div>
-    <div class="read-more">
-      <a href="/post/book-docs/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/001_panic_error/">错误处理</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-11-20" class="post-time">
-        2019-11-20
-      </time>
-      <div class="post-category">
-          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
-          
-        </div>
-      <span class="more-meta"> 约 989 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      <p>就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/001_panic_error/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-</section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-
-
-
 
         </div>
       </div>

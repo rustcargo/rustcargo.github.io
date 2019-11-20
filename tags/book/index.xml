@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>book on RustCargo - rust技术分享</title>
+    <link>https://www.rustcargo.com/tags/book/</link>
+    <description>Recent content in book on RustCargo - rust技术分享</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 01 Jan 2018 16:01:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.rustcargo.com/tags/book/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rust在线文档</title>
+      <link>https://www.rustcargo.com/post/book-docs/</link>
+      <pubDate>Mon, 01 Jan 2018 16:01:23 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/post/book-docs/</guid>
+      <description>在线阅读 Rust 程序设计语言（第二版)</description>
+    </item>
+    
+  </channel>
+</rss>

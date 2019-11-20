@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rust语言基础 on RustCargo - rust技术分享</title>
+    <title>Rust语言基础 on RustCargo - rust语言中文网</title>
     <link>https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</link>
-    <description>Recent content in Rust语言基础 on RustCargo - rust技术分享</description>
+    <description>Recent content in Rust语言基础 on RustCargo - rust语言中文网</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 20 Nov 2019 12:49:53 +0800</lastBuildDate>
     

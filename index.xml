@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>RustCargo - rust技术分享</title>
+    <title>RustCargo - rust语言中文网</title>
     <link>https://www.rustcargo.com/</link>
-    <description>Recent content on RustCargo - rust技术分享</description>
+    <description>Recent content on RustCargo - rust语言中文网</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 20 Nov 2019 12:49:53 +0800</lastBuildDate>
     
@@ -17,7 +17,9 @@
       
       <guid>https://www.rustcargo.com/about/</guid>
       
-        <description>&lt;p&gt;Hugo is a static site engine written in Go.&lt;/p&gt;
+        <description>&lt;p&gt;这里是Rust语言中文网，Rust语言学习园地&lt;/p&gt;
+
+&lt;p&gt;Rust能够在编译期间就确保内存安全、提供和C/C++同级别的高性能、还有并发、异步、函数编程、强大的宏等等特性，并且很重要的一点是整个Rust社区很友好，而且Rust的工程学用起来体验很好。然而Rust学习曲线比较陡峭，而且现在学习到的Rust知识还很少（Rust的中文资料相对较少），因此搭建这个网站与Rust爱好者交流、探讨、分享技术知识，整合实用的知识点,  以方便更多人学习。&lt;/p&gt;
 </description>
       
     </item>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> - RustCargo - rust语言中文网</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Bauer" />
+  <meta name="description" content="1.Box Box&amp;lt;T&amp;gt;是指向堆中的指针。
+fn main() { let box = Box::new(3); println!(&amp;quot;{}&amp;quot;, box); }  在出了指针的作用域之后，指针和它指向的对象都将被释放。
+在本例中，box将在main函数之后被释放。
+由于Box&amp;lt;T&amp;gt;的大小是确定的(size类型的大小)，所以可以使用Box编写嵌套类型，比如实现链表。
+2.Deref trait 实现Deref这个trait可以重载解引用运算符(*)，这样可以把Deref trait当作普通引用。
+use std::ops::Deref; fn main() { let b=MyBox::new(12); assert_eq!(*b,12); } struct MyBox&amp;lt;T&amp;gt;(T); impl&amp;lt;T&amp;gt; MyBox&amp;lt;T&amp;gt; { fn new(value: T) -&amp;gt; Self { MyBox(value) } } impl&amp;lt;T&amp;gt; Deref for MyBox&amp;lt;T&amp;gt; { type Target = T; fn deref(&amp;amp;self) -&amp;gt; &amp;amp;Self::Target { &amp;amp;self.0 } }  当调用*b时，本质上是*(b.deref())，这样&amp;amp;引用和Deref引用的形式就统一了。
+函数和方法的隐式解引用强制多态 假设我们有一个函数，它需要一个&amp;amp;str类型的参数。
+fn print_name(name: &amp;amp;str){ println!(&amp;quot;name:{}&amp;quot;,name); }  改变main中的代码" />
+
+  <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.59.1" />
+
+
+<link rel="canonical" href="https://www.rustcargo.com/post/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="1.Box Box&lt;T&gt;是指向堆中的指针。
+fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); }  在出了指针的作用域之后，指针和它指向的对象都将被释放。
+在本例中，box将在main函数之后被释放。
+由于Box&lt;T&gt;的大小是确定的(size类型的大小)，所以可以使用Box编写嵌套类型，比如实现链表。
+2.Deref trait 实现Deref这个trait可以重载解引用运算符(*)，这样可以把Deref trait当作普通引用。
+use std::ops::Deref; fn main() { let b=MyBox::new(12); assert_eq!(*b,12); } struct MyBox&lt;T&gt;(T); impl&lt;T&gt; MyBox&lt;T&gt; { fn new(value: T) -&gt; Self { MyBox(value) } } impl&lt;T&gt; Deref for MyBox&lt;T&gt; { type Target = T; fn deref(&amp;self) -&gt; &amp;Self::Target { &amp;self.0 } }  当调用*b时，本质上是*(b.deref())，这样&amp;引用和Deref引用的形式就统一了。
+函数和方法的隐式解引用强制多态 假设我们有一个函数，它需要一个&amp;str类型的参数。
+fn print_name(name: &amp;str){ println!(&quot;name:{}&quot;,name); }  改变main中的代码" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.rustcargo.com/post/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" />
+<meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="">
+<meta itemprop="description" content="1.Box Box&lt;T&gt;是指向堆中的指针。
+fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); }  在出了指针的作用域之后，指针和它指向的对象都将被释放。
+在本例中，box将在main函数之后被释放。
+由于Box&lt;T&gt;的大小是确定的(size类型的大小)，所以可以使用Box编写嵌套类型，比如实现链表。
+2.Deref trait 实现Deref这个trait可以重载解引用运算符(*)，这样可以把Deref trait当作普通引用。
+use std::ops::Deref; fn main() { let b=MyBox::new(12); assert_eq!(*b,12); } struct MyBox&lt;T&gt;(T); impl&lt;T&gt; MyBox&lt;T&gt; { fn new(value: T) -&gt; Self { MyBox(value) } } impl&lt;T&gt; Deref for MyBox&lt;T&gt; { type Target = T; fn deref(&amp;self) -&gt; &amp;Self::Target { &amp;self.0 } }  当调用*b时，本质上是*(b.deref())，这样&amp;引用和Deref引用的形式就统一了。
+函数和方法的隐式解引用强制多态 假设我们有一个函数，它需要一个&amp;str类型的参数。
+fn print_name(name: &amp;str){ println!(&quot;name:{}&quot;,name); }  改变main中的代码">
+
+
+
+<meta itemprop="wordCount" content="442">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="1.Box Box&lt;T&gt;是指向堆中的指针。
+fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); }  在出了指针的作用域之后，指针和它指向的对象都将被释放。
+在本例中，box将在main函数之后被释放。
+由于Box&lt;T&gt;的大小是确定的(size类型的大小)，所以可以使用Box编写嵌套类型，比如实现链表。
+2.Deref trait 实现Deref这个trait可以重载解引用运算符(*)，这样可以把Deref trait当作普通引用。
+use std::ops::Deref; fn main() { let b=MyBox::new(12); assert_eq!(*b,12); } struct MyBox&lt;T&gt;(T); impl&lt;T&gt; MyBox&lt;T&gt; { fn new(value: T) -&gt; Self { MyBox(value) } } impl&lt;T&gt; Deref for MyBox&lt;T&gt; { type Target = T; fn deref(&amp;self) -&gt; &amp;Self::Target { &amp;self.0 } }  当调用*b时，本质上是*(b.deref())，这样&amp;引用和Deref引用的形式就统一了。
+函数和方法的隐式解引用强制多态 假设我们有一个函数，它需要一个&amp;str类型的参数。
+fn print_name(name: &amp;str){ println!(&quot;name:{}&quot;,name); }  改变main中的代码"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-152968510-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">RustCargo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/about/">关于</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          <div class="mobile-menu-parent">
+            <span class="mobile-submenu-open"></span>
+            <a href="https://www.rustcargo.com/categories/docs/">
+              文档
+            </a>
+          </div>
+          <ul class="mobile-submenu-list">
+            
+              <li>
+                <a href="https://www.rustcargo.com/post/book-docs/">Rust在线文档</a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      RustCargo
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          <a class="menu-item-link menu-parent" href="https://www.rustcargo.com/categories/docs/">文档</a>
+          <ul class="submenu">
+            
+              <li>
+                <a href="https://www.rustcargo.com/post/book-docs/">Rust在线文档</a>
+              </li>
+            
+          </ul>
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title"></h1>
+      
+      <div class="post-meta">
+        <time datetime="0001-01-01" class="post-time">
+          0001-01-01
+        </time>
+        
+        <span class="more-meta"> 约 442 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-box-t">1.Box<T></a></li>
+<li><a href="#2-deref-trait">2.Deref trait</a>
+<ul>
+<li><a href="#函数和方法的隐式解引用强制多态">函数和方法的隐式解引用强制多态</a></li>
+</ul></li>
+<li><a href="#3-drop-trait">3.Drop trait</a>
+<ul>
+<li><a href="#提前释放资源">提前释放资源</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#1-rc-t-引用计数指针">1. Rc<T> 引用计数指针</a></li>
+<li><a href="#2-refcell-t-内部可变指针">2. RefCell<T> 内部可变指针</a></li>
+<li><a href="#3-使用rc-t-和refcell-t-构建具有多个所有者的可变引用">3.使用Rc<T>和RefCell<T>构建具有多个所有者的可变引用</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="1-box-t">1.Box<T></h2>
+
+<p><code>Box&lt;T&gt;</code>是指向堆中的指针。</p>
+
+<pre><code>fn main() {
+    let box = Box::new(3);
+    println!(&quot;{}&quot;, box);
+}
+</code></pre>
+
+<p><strong>在出了指针的作用域之后，指针和它指向的对象都将被释放。</strong></p>
+
+<p>在本例中，<code>box</code>将在<code>main</code>函数之后被释放。</p>
+
+<p>由于<code>Box&lt;T&gt;</code>的大小是确定的(<code>size</code>类型的大小)，所以可以使用<code>Box</code>编写嵌套类型，比如实现链表。</p>
+
+<h2 id="2-deref-trait">2.Deref trait</h2>
+
+<p>实现<code>Deref</code>这个trait可以重载解引用运算符(<code>*</code>)，这样可以把<code>Deref</code> trait当作普通引用。</p>
+
+<pre><code>use std::ops::Deref;
+
+fn main() {
+    let b=MyBox::new(12);
+    assert_eq!(*b,12);
+}
+
+struct MyBox&lt;T&gt;(T);
+
+impl&lt;T&gt; MyBox&lt;T&gt; {
+    fn new(value: T) -&gt; Self {
+        MyBox(value)
+    }
+}
+
+impl&lt;T&gt; Deref for MyBox&lt;T&gt; {
+    type Target = T;
+
+    fn deref(&amp;self) -&gt; &amp;Self::Target {
+        &amp;self.0
+    }
+}
+</code></pre>
+
+<p>当调用<code>*b</code>时，本质上是<code>*(b.deref())</code>，这样<code>&amp;</code>引用和<code>Deref</code>引用的形式就统一了。</p>
+
+<h3 id="函数和方法的隐式解引用强制多态">函数和方法的隐式解引用强制多态</h3>
+
+<p>假设我们有一个函数，它需要一个<code>&amp;str</code>类型的参数。</p>
+
+<pre><code>fn print_name(name: &amp;str){
+    println!(&quot;name:{}&quot;,name);
+}
+</code></pre>
+
+<p>改变<code>main</code>中的代码</p>
+
+<pre><code>let string = MyBox::new(String::from(&quot;My Box&quot;));
+print_name(&amp;(*string))
+</code></pre>
+
+<p><code>*string</code>获得 <code>String</code> 类型，调用<code>String</code>类型的<code>&amp;</code>来获取<code>&amp;str</code>类型（可以查看标准库，实现了<code>AsRef&lt;str&gt;</code>
+trait）。</p>
+
+<p>如果没有隐式解引用强制多态，我们需要这么写代码。很明显，这种写法太啰嗦了，本来rust的符号一大堆，现在这样子根本无法忍受。</p>
+
+<p>我们稍微更改一下</p>
+
+<pre><code>print_name(&amp;string);
+</code></pre>
+
+<p>其他代码不变，把参数改为<code>&amp;string</code>，明显，这是获取一个<code>&amp;MyBox&lt;String&gt;</code>的对象，然后rust会自动调用<code>deref()</code>转为<code>&amp;String</code>，<code>&amp;String</code>调用<code>deref()</code>转为<code>&amp;str</code>(<code>String</code>也实现了<code>Deref</code>
+trait)，这样子就与函数签名匹配了，编译通过。</p>
+
+<p>也就是，rust会隐式解引用来匹配所声明变量（参数）的类型。</p>
+
+<pre><code>let a:&amp;str = &amp;string;
+println!(&quot;{}&quot;, a);
+</code></pre>
+
+<p>这样的代码也是有效的。</p>
+
+<p><strong>Rust 在发现类型和 trait 实现满足三种情况时会进行解引用强制多态：</strong></p>
+
+<ul>
+<li>当 <code>T: Deref&lt;Target=U&gt;</code> 时从 <code>&amp;T</code> 到 <code>&amp;U</code>。</li>
+<li>当 <code>T: DerefMut&lt;Target=U&gt;</code> 时从 <code>&amp;mut T</code> 到 <code>&amp;mut U</code>。</li>
+<li>当 <code>T: Deref&lt;Target=U&gt;</code> 时从 <code>&amp;mut T</code> 到 <code>&amp;U</code>。</li>
+</ul>
+
+<p><code>Deref</code> trait 解引用为 <code>&amp;T</code> ，即不可变引用, 而 <code>DerefMut</code> trait 解引用为 <code>&amp;mut T</code>，是可变引用。</p>
+
+<h2 id="3-drop-trait">3.Drop trait</h2>
+
+<p><code>Drop</code>是专门用来进行一些资源释放的操作，比如IO操作，当对象离开作用域时，会自动调用 <code>Drop</code> 的 <code>drop</code> 方法来释放资源。</p>
+
+<pre><code>use std::fmt::Display;
+
+fn main() {
+    let mb=MyBox::new(2);
+    println!(&quot;the end&quot;);
+}
+
+struct MyBox&lt;T:Display&gt;(T);
+
+impl&lt;T:Display&gt; MyBox&lt;T&gt; {
+    fn new(value: T) -&gt; Self {
+        MyBox(value)
+    }
+}
+impl&lt;T:Display&gt; Drop for MyBox&lt;T&gt;{
+    fn drop(&amp;mut self) {
+        println!(&quot;the data is {}&quot;,self.0);
+    }
+}
+</code></pre>
+
+<p>泛型约束<code>T:Display</code>是为了让它能够被打印。这段代码最终输出</p>
+
+<pre><code>the end
+the data is 2
+</code></pre>
+
+<h3 id="提前释放资源">提前释放资源</h3>
+
+<p>有时候，我们需要提前释放资源。比如写入文件完成后，需要立马 close 。但是，<code>Drop::drop</code> 是不允许手动调用的，这时，我们需要
+<code>std::mem::drop</code> 函数来释放。</p>
+
+<p>修改<code>main</code>函数</p>
+
+<pre><code>fn main() {
+    let mb=MyBox::new(2);
+    drop(mb);
+    println!(&quot;the end&quot;);
+}
+</code></pre>
+
+<p>输出结果</p>
+
+<pre><code>the data is 2
+the end
+</code></pre>
+
+<p>这表明，<code>Drop::drop</code>被提前调用了，并且只调用了一次。</p>
+
+<p><strong>注意<code>std::mem::drop</code> 的参数是 move 语义，也就是说，在调用 <code>std::mem::drop</code> 之后，mb
+已经被移动，不能够再用了。</strong></p>
+
+<p>那么这个函数是怎么实现的呢？我们跳转到 <code>drop</code> 的实现</p>
+
+<pre><code>#[inline]
+#[stable(feature = &quot;rust1&quot;, since = &quot;1.0.0&quot;)]
+pub fn drop&lt;T&gt;(_x: T) { }
+</code></pre>
+
+<p>对，它的函数体是空的！！！</p>
+
+<p>其实不难理解，因为 mb 被移动到 <code>drop</code> 中了，在 <code>drop</code> 函数结束后，<code>mb.drop()</code> 就会被调用 ，这样就实现了资源的提前释放。</p>
+
+<h1 id="1-rc-t-引用计数指针">1. Rc<T> 引用计数指针</h1>
+
+<p>Rc<T> 是引用计数指针，可以使用<code>clone</code>使得指针所指向的数据具有多个所有者。</p>
+
+<pre><code>enum List {
+    Cons(i32, Rc&lt;List&gt;),
+    Nil,
+}
+
+use List::{Cons, Nil};
+use std::rc::Rc;
+
+fn main() {
+    let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
+    let b = Cons(3, Rc::clone(&amp;a));
+    let c = Cons(4, Rc::clone(&amp;a));
+}
+</code></pre>
+
+<p><strong>需要注意的是，Rc <T>指针的数据是不可变的</strong></p>
+
+<h1 id="2-refcell-t-内部可变指针">2. RefCell<T> 内部可变指针</h1>
+
+<p><code>RefCell&lt;T&gt;</code>指针可以绕过编译期借用检查，普通指针和引用同一时间只能有一个可变引用或者多个不可变引用。而<code>RefCell&lt;T&gt;</code>把这个检查推迟到了运行时。如果有引用违反了借用原则，程序会panic！</p>
+
+<pre><code>use std::cell::RefCell;
+
+struct S{
+    data:i32
+}
+fn main() {
+    let s = RefCell::new(S{data:3});
+    s.borrow_mut().data=5;
+    println!(&quot;{}&quot;,s.borrow().data);
+}
+</code></pre>
+
+<p>通过<code>&amp;self.borrow()</code>获得一个不可变借用，<code>&amp;self.borrrow_mut()</code>获得一个可变借用。</p>
+
+<pre><code>use std::cell::RefCell;
+
+struct S{
+    data:i32
+}
+fn main() {
+    let s = RefCell::new(S{data:3});
+    let s1=s.borrow_mut();
+    let s2 = s.borrow_mut();
+}
+</code></pre>
+
+<p>s有两个可变引用，这很明显违反了引用借用原则。所以运行后会得到一个panic。</p>
+
+<pre><code>thread 'main' panicked at 'already borrowed: BorrowMutError', src\libcore\result.rs:997:5
+stack backtrace:
+   0: std::sys_common::backtrace::_print
+             at src\libstd\sys\windows\backtrace/mod.rs:95
+             at src\libstd\sys\windows\backtrace/mod.rs:82
+             at src\libstd\sys_common/backtrace.rs:71
+   1: std::panicking::default_hook::{{closure}}
+             at src\libstd\sys_common/backtrace.rs:59
+             at src\libstd/panicking.rs:197
+   2: std::panicking::default_hook
+             at src\libstd/panicking.rs:211
+   3: std::panicking::rust_panic_with_hook
+             at src\libstd/panicking.rs:474
+   4: std::panicking::continue_panic_fmt
+             at src\libstd/panicking.rs:381
+   5: rust_begin_unwind
+             at src\libstd/panicking.rs:308
+   6: core::panicking::panic_fmt
+             at src\libcore/panicking.rs:85
+   7: core::result::unwrap_failed
+             at /rustc/3c235d5600393dfe6c36eeed34042efad8d4f26e\src\libcore/macros.rs:18
+   8: core::result::Result&lt;T,E&gt;::expect
+             at /rustc/3c235d5600393dfe6c36eeed34042efad8d4f26e\src\libcore/result.rs:825
+   9: core::cell::RefCell&lt;T&gt;::borrow_mut
+             at /rustc/3c235d5600393dfe6c36eeed34042efad8d4f26e\src\libcore/cell.rs:873
+  10: untitled::main
+             at src/main.rs:9
+  11: std::rt::lang_start::{{closure}}
+             at /rustc/3c235d5600393dfe6c36eeed34042efad8d4f26e\src\libstd/rt.rs:64
+  12: std::panicking::try::do_call
+             at src\libstd/rt.rs:49
+             at src\libstd/panicking.rs:293
+  13: _rust_maybe_catch_panic
+             at src\libpanic_unwind/lib.rs:87
+  14: std::rt::lang_start_internal
+             at src\libstd/panicking.rs:272
+             at src\libstd/panic.rs:388
+             at src\libstd/rt.rs:48
+  15: std::rt::lang_start
+             at /rustc/3c235d5600393dfe6c36eeed34042efad8d4f26e\src\libstd/rt.rs:64
+  16: main
+  17: _tmainCRTStartup
+  18: mainCRTStartup
+  19: unit_addrs_search
+  20: unit_addrs_search
+</code></pre>
+
+<h1 id="3-使用rc-t-和refcell-t-构建具有多个所有者的可变引用">3.使用Rc<T>和RefCell<T>构建具有多个所有者的可变引用</h1>
+
+<pre><code>use std::cell::RefCell;
+use std::rc::Rc;
+
+
+struct S{
+    data:i32
+}
+fn main() {
+    let s = Rc::new( RefCell::new(S{data:3}));
+    let s1 = Rc::clone(&amp;s);
+    s1.borrow_mut().data=43;
+    println!(&quot;{}&quot;,RefCell::borrow(&amp;s).data);
+}
+</code></pre>
+
+<p>输出43</p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/%E7%AC%AC02%E7%AB%A0-%E7%8C%9C%E7%8C%9C%E7%9C%8B/">
+            <span class="next-text nav-default"></span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://www.rustcargo.com/post/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'baoge';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:your@email.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/rustcargo" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://www.rustcargo.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Bauer
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script id="tencent_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+	hm.src = "//tajs.qq.com/stats?sId=66490833";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

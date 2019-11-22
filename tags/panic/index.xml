@@ -19,5 +19,14 @@
       <description>&lt;p&gt;就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>字符串格式化</title>
+      <link>https://www.rustcargo.com/post/002%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96/</link>
+      <pubDate>Tue, 20 Nov 2018 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/post/002%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96/</guid>
+      <description>字符串格式化 参考std::fmt模块的文档 模块std::fmt包含对format!宏的运行时支持，而format!宏是print!系列宏的基</description>
+    </item>
+    
   </channel>
 </rss>

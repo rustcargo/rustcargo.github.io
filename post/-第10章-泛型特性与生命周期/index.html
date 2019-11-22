@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> - RustCargo - rust语言中文网</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Bauer" />
+  <meta name="description" content="第10章 泛型、特性与生命周期 0 前言 0.0 重复的代码 fn main() { let number_list = vec![34, 50, 25, 100, 65]; let mut largest = number_list[0]; for number in number_list { if number &amp;gt; largest { largest = number; } } println!(&amp;quot;The largest number is {}&amp;quot;, largest); let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8]; let mut largest = number_list[0]; for number in number_list { if number &amp;gt; largest { largest = number; } } println!" />
+
+  <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.59.1" />
+
+
+<link rel="canonical" href="https://www.rustcargo.com/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="第10章 泛型、特性与生命周期 0 前言 0.0 重复的代码 fn main() { let number_list = vec![34, 50, 25, 100, 65]; let mut largest = number_list[0]; for number in number_list { if number &gt; largest { largest = number; } } println!(&quot;The largest number is {}&quot;, largest); let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8]; let mut largest = number_list[0]; for number in number_list { if number &gt; largest { largest = number; } } println!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.rustcargo.com/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" />
+<meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="">
+<meta itemprop="description" content="第10章 泛型、特性与生命周期 0 前言 0.0 重复的代码 fn main() { let number_list = vec![34, 50, 25, 100, 65]; let mut largest = number_list[0]; for number in number_list { if number &gt; largest { largest = number; } } println!(&quot;The largest number is {}&quot;, largest); let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8]; let mut largest = number_list[0]; for number in number_list { if number &gt; largest { largest = number; } } println!">
+
+
+
+<meta itemprop="wordCount" content="1365">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="第10章 泛型、特性与生命周期 0 前言 0.0 重复的代码 fn main() { let number_list = vec![34, 50, 25, 100, 65]; let mut largest = number_list[0]; for number in number_list { if number &gt; largest { largest = number; } } println!(&quot;The largest number is {}&quot;, largest); let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8]; let mut largest = number_list[0]; for number in number_list { if number &gt; largest { largest = number; } } println!"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-152968510-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">RustCargo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/about/">关于</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          <div class="mobile-menu-parent">
+            <span class="mobile-submenu-open"></span>
+            <a href="https://www.rustcargo.com/categories/docs/">
+              文档
+            </a>
+          </div>
+          <ul class="mobile-submenu-list">
+            
+              <li>
+                <a href="https://www.rustcargo.com/post/book-docs/">Rust在线文档</a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      RustCargo
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://www.rustcargo.com/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          <a class="menu-item-link menu-parent" href="https://www.rustcargo.com/categories/docs/">文档</a>
+          <ul class="submenu">
+            
+              <li>
+                <a href="https://www.rustcargo.com/post/book-docs/">Rust在线文档</a>
+              </li>
+            
+          </ul>
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title"></h1>
+      
+      <div class="post-meta">
+        <time datetime="0001-01-01" class="post-time">
+          0001-01-01
+        </time>
+        
+        <span class="more-meta"> 约 1365 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#第10章-泛型-特性与生命周期">第10章 泛型、特性与生命周期</a>
+<ul>
+<li><a href="#0-前言">0 前言</a>
+<ul>
+<li><a href="#0-0-重复的代码">0.0 重复的代码</a></li>
+<li><a href="#0-1-使用函数抽象重复的部分">0.1 使用函数抽象重复的部分</a></li>
+</ul></li>
+<li><a href="#1-泛型">1 泛型</a>
+<ul>
+<li><a href="#1-1-函数中的泛型">1.1 函数中的泛型</a>
+<ul>
+<li><a href="#1-1-1-重复的函数">1.1.1 重复的函数</a></li>
+<li><a href="#1-1-2-使用泛型避免重复">1.1.2 使用泛型避免重复</a></li>
+</ul></li>
+<li><a href="#1-2-结构体中的泛型">1.2 结构体中的泛型</a>
+<ul>
+<li><a href="#1-2-1-单个泛型类型">1.2.1 单个泛型类型</a></li>
+<li><a href="#1-2-2-多个泛型类型">1.2.2 多个泛型类型</a></li>
+</ul></li>
+<li><a href="#1-3-枚举中的泛型">1.3 枚举中的泛型</a></li>
+<li><a href="#1-4-方法定义中的泛型">1.4 方法定义中的泛型</a>
+<ul>
+<li><a href="#1-4-1-多种泛型参数的混合使用">1.4.1 多种泛型参数的混合使用</a></li>
+</ul></li>
+<li><a href="#1-5-泛型的单态化">1.5 泛型的单态化</a></li>
+</ul></li>
+<li><a href="#2-用特性定义共享的行为">2 用特性定义共享的行为</a>
+<ul>
+<li><a href="#2-1-定义特性">2.1 定义特性</a></li>
+<li><a href="#2-2-实现特性">2.2 实现特性</a></li>
+<li><a href="#2-3-默认实现">2.3 默认实现</a></li>
+<li><a href="#2-4-特性限定">2.4 特性限定</a></li>
+<li><a href="#2-5-用特性限定有条件地实现方法">2.5 用特性限定有条件地实现方法</a></li>
+<li><a href="#2-6-总括实现">2.6 总括实现</a></li>
+</ul></li>
+<li><a href="#3-生命周期与引用有效性">3 生命周期与引用有效性</a>
+<ul>
+<li><a href="#3-1-生命周期可避免悬垂引用">3.1 生命周期可避免悬垂引用</a></li>
+<li><a href="#3-2-函数中的生命周期">3.2 函数中的生命周期</a>
+<ul>
+<li><a href="#3-2-1-生命周期注解">3.2.1 生命周期注解</a></li>
+<li><a href="#3-2-2-函数签名中的生命周期注解">3.2.2 函数签名中的生命周期注解</a>
+<ul>
+<li><a href="#3-2-2-1-正确调用示例">3.2.2.1 正确调用示例</a></li>
+<li><a href="#3-2-2-2-错误的调用示例">3.2.2.2 错误的调用示例</a></li>
+</ul></li>
+<li><a href="#3-2-3-深入理解生命周期">3.2.3 深入理解生命周期</a></li>
+</ul></li>
+<li><a href="#3-3-结构体中的生命周期">3.3 结构体中的生命周期</a></li>
+<li><a href="#3-4-省略生命周期注解">3.4 省略生命周期注解</a>
+<ul>
+<li><a href="#3-4-1-生命周期注解省略规则">3.4.1 生命周期注解省略规则</a>
+<ul>
+<li><a href="#3-4-1-1-示例1">3.4.1.1 示例1</a></li>
+<li><a href="#3-4-1-2-示例2">3.4.1.2 示例2</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#3-5-方法定义中的生命周期注解">3.5 方法定义中的生命周期注解</a>
+<ul>
+<li><a href="#3-5-1-示例1">3.5.1 示例1</a></li>
+<li><a href="#3-5-2-示例2">3.5.2 示例2</a></li>
+</ul></li>
+<li><a href="#3-6-静态生命周期">3.6 静态生命周期</a></li>
+<li><a href="#3-7-泛型类型参数-特性限定和生命周期">3.7 泛型类型参数、特性限定和生命周期</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="第10章-泛型-特性与生命周期">第10章 泛型、特性与生命周期</h1>
+
+<h2 id="0-前言">0 前言</h2>
+
+<h3 id="0-0-重复的代码">0.0 重复的代码</h3>
+
+<pre><code class="language-rust">fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let mut largest = number_list[0];
+
+    for number in number_list {
+        if number &gt; largest {
+            largest = number;
+        }
+    }
+
+    println!(&quot;The largest number is {}&quot;, largest);
+
+    let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8];
+
+    let mut largest = number_list[0];
+
+    for number in number_list {
+        if number &gt; largest {
+            largest = number;
+        }
+    }
+
+    println!(&quot;The largest number is {}&quot;, largest);
+}
+</code></pre>
+
+<h3 id="0-1-使用函数抽象重复的部分">0.1 使用函数抽象重复的部分</h3>
+
+<pre><code class="language-rust">fn largest(list: &amp;[i32]) -&gt; i32 {
+    let mut largest = list[0];
+
+    for &amp;item in list.iter() {
+        if item &gt; largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is {}&quot;, result);
+
+    let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8];
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is {}&quot;, result);
+}
+</code></pre>
+
+<ul>
+<li>遗留问题：如果有两个函数，一个用于寻找元素类型为<code>i32</code>的切片中的最大值；另一个寻找元素类型为<code>char</code>的切片中的最大值，这时候该如何消除重复？</li>
+</ul>
+
+<h2 id="1-泛型">1 泛型</h2>
+
+<h3 id="1-1-函数中的泛型">1.1 函数中的泛型</h3>
+
+<h4 id="1-1-1-重复的函数">1.1.1 重复的函数</h4>
+
+<ul>
+<li><p>下面代码中的<code>largest_i32</code>和<code>largest_char</code>函数仅参数和返回值的类型不同，函数体完全相同，这是一种重复</p>
+
+<pre><code class="language-rust">fn largest_i32(list: &amp;[i32]) -&gt; i32 {
+let mut largest = list[0];
+for &amp;item in list.iter() {
+    if item &gt; largest {
+        largest = item;
+    }
+}
+largest
+}
+
+fn largest_char(list: &amp;[char]) -&gt; char {
+let mut largest = list[0];
+for &amp;item in list.iter() {
+    if item &gt; largest {
+        largest = item;
+    }
+}
+largest
+}
+
+fn main() {
+let number_list = vec![34, 50, 25, 100, 65];
+
+let result = largest_i32(&amp;number_list);
+println!(&quot;The largest number is {}&quot;, result);
+assert_eq!(result, 100);
+
+let char_list = vec!['y', 'm', 'a', 'q'];
+
+let result = largest_char(&amp;char_list);
+println!(&quot;The largest char is {}&quot;, result);
+assert_eq!(result, 'y');
+}
+</code></pre></li>
+</ul>
+
+<h4 id="1-1-2-使用泛型避免重复">1.1.2 使用泛型避免重复</h4>
+
+<pre><code class="language-rust">#![allow(dead_code)]
+
+use std::cmp::PartialOrd;
+
+fn largest&lt;T&gt;(list :&amp;[T]) -&gt; T where T: Clone + PartialOrd{
+    let mut max  = &amp;list[0];
+    for cur in list.iter(){
+        if cur &gt; max{
+            max = cur;
+        }
+    }
+    max.clone()
+}
+
+// 注意: 两种写法的差别
+fn largest2&lt;T&gt;(list :&amp;[T]) -&gt; T where T: Clone + PartialOrd{
+    let mut max  = list[0].clone();
+    for cur in list.iter(){
+        // 写成 cur &gt; &amp;max 也可以,但是 cur &gt; max 不行
+        // 因为 &gt; 要求调用 PartialOrd 的 fn partial_cmp(&amp;self, other: &amp;Rhs) -&gt; Option&lt;Ordering&gt;; 方法
+        // 第二个参数必须是引用类型
+        if *cur &gt; max{
+            max = cur.clone();
+        }
+    }
+    max
+}
+
+pub fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is {}&quot;, result);
+    assert_eq!(result, 100);
+
+    let char_list = vec!['y', 'm', 'a', 'q'];
+
+    let result = largest(&amp;char_list);
+    println!(&quot;The largest char is {}&quot;, result);
+    assert_eq!(result, 'y');
+}
+</code></pre>
+
+<h3 id="1-2-结构体中的泛型">1.2 结构体中的泛型</h3>
+
+<h4 id="1-2-1-单个泛型类型">1.2.1 单个泛型类型</h4>
+
+<pre><code class="language-rust">// 要求x,y的类型相同
+struct Point&lt;T&gt; {
+    x: T,
+    y: T,
+}
+
+fn main() {
+    let integer = Point { x: 5, y: 10 };
+    let float = Point { x: 1.0, y: 4.0 };
+    // 这里不正确: x,y的类型不一致
+    // let wont_work = Point { x: 5, y: 4.0 };
+}
+</code></pre>
+
+<h4 id="1-2-2-多个泛型类型">1.2.2 多个泛型类型</h4>
+
+<pre><code class="language-rust">struct Point&lt;T, U&gt; {
+    x: T,
+    y: U,
+}
+
+fn main() {
+    let both_integer = Point { x: 5, y: 10 };
+    let both_float = Point { x: 1.0, y: 4.0 };
+    // 允许x,y的类型不同
+    let integer_and_float = Point { x: 5, y: 4.0 };
+}
+</code></pre>
+
+<h3 id="1-3-枚举中的泛型">1.3 枚举中的泛型</h3>
+
+<ul>
+<li><p>标准库中的<code>std::option::Option</code>和<code>std::result::Result</code>枚举类型使用了泛型</p>
+
+<pre><code class="language-rust">pub enum Option&lt;T&gt; {
+None,
+Some(T),
+}
+</code></pre>
+
+<pre><code class="language-rust">pub enum Result&lt;T, E&gt; {
+Ok(T),
+Err(E),
+}
+</code></pre></li>
+</ul>
+
+<h3 id="1-4-方法定义中的泛型">1.4 方法定义中的泛型</h3>
+
+<pre><code class="language-rust">struct Point&lt;T&gt; {
+    x: T,
+    y: T,
+}
+
+// impl 后面的 &lt;T&gt; 是必须的,这样编译器才知道后面的 T 表示的是泛型类型,而不是具体类型
+impl&lt;T&gt; Point&lt;T&gt; {
+    fn x(&amp;self) -&gt; &amp;T {
+        &amp;self.x
+    }
+}
+
+// 这里 impl 后面没有 &lt;T&gt;,则编译器知道后面的 f32 是一个具体类型,而不是泛型类型
+// 这表示 Point&lt;f32&gt;具有 distance_from_origin() 方法,而其他 T 不等于 f32 的 Point 类型没有这个方法
+impl Point&lt;f32&gt; {
+    fn distance_from_origin(&amp;self) -&gt; f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
+}
+
+fn main() {
+    let p = Point { x: 5, y: 10 };
+    println!(&quot;p.x = {}&quot;, p.x());
+}
+</code></pre>
+
+<h4 id="1-4-1-多种泛型参数的混合使用">1.4.1 多种泛型参数的混合使用</h4>
+
+<pre><code class="language-rust">struct Point&lt;T, U&gt; {
+    x: T,
+    y: U,
+}
+
+// T,U 泛型参数用于结构体
+impl&lt;T, U&gt; Point&lt;T, U&gt; {
+    // V,W 泛型参数仅用于 mixup 方法
+    fn mixup&lt;V, W&gt;(self, other: Point&lt;V, W&gt;) -&gt; Point&lt;T, W&gt; {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+
+fn main() {
+    let p1 = Point { x: 5, y: 10.4 };
+    let p2 = Point { x: &quot;Hello&quot;, y: 'c'};
+
+    let p3 = p1.mixup(p2);
+
+    println!(&quot;p3.x = {}, p3.y = {}&quot;, p3.x, p3.y);
+}
+</code></pre>
+
+<h3 id="1-5-泛型的单态化">1.5 泛型的单态化</h3>
+
+<ul>
+<li>编译器通过对泛型代码进行单态化（monomorphization）来保证性能</li>
+
+<li><p>单态化就是将泛型类型替换成具体的类型，对每种具体类型，都生成一个不带泛型的特定的单态化类型</p>
+
+<pre><code class="language-rust">let integer = Some(5);
+let float = Some(5.0);
+</code></pre></li>
+
+<li><p>上述代码对<code>Option&lt;T&gt;</code>使用了两种具体类型：<code>i32</code>和<code>f64</code>，则编译器会生成两种不带泛型的单态化类型：</p>
+
+<pre><code class="language-rust">enum Option_i32 {
+Some(i32),
+None,
+}
+
+enum Option_f64 {
+Some(f64),
+None,
+}
+</code></pre></li>
+</ul>
+
+<h2 id="2-用特性定义共享的行为">2 用特性定义共享的行为</h2>
+
+<h3 id="2-1-定义特性">2.1 定义特性</h3>
+
+<ul>
+<li><p>特性：将方法签名组合起来，定义一个实现某些目的所必须的行为集合</p>
+
+<pre><code class="language-rust">pub trait Flyable{
+fn fly(&amp;self,src: String,dst: String);
+}
+</code></pre></li>
+</ul>
+
+<h3 id="2-2-实现特性">2.2 实现特性</h3>
+
+<pre><code class="language-rust">struct Plane{
+}
+impl Flyable for Plane{
+    fn fly(&amp;self,src:String,dst:String){
+        println!(&quot;民用飞机装载乘客从{}飞往{}&quot;,src,dst);
+    }
+}
+</code></pre>
+
+<ul>
+<li><font color="red"><strong>孤儿规则：特性或者类型中至少一个位于本地包时，才可以为类型实现特性</strong></font></li>
+<li><font color="red">无法为其他包中的类型实现其他包中的特性</font></li>
+</ul>
+
+<h3 id="2-3-默认实现">2.3 默认实现</h3>
+
+<ul>
+<li>可以在定义特性的时候为方法提供默认实现</li>
+<li>可以在默认实现中调用其他没有默认实现的方法</li>
+
+<li><p>特性方法有默认实现时，为类型实现特性时，可以仅仅声明实现特性，而不必给出方法，从而使用默认实现；当然也可以覆盖默认实现</p>
+
+<pre><code class="language-rust">pub trait Summarizable {
+fn author_summary(&amp;self) -&gt; String;
+fn summary(&amp;self) -&gt; String {
+    format!(&quot;(Read more from {}...)&quot;, self.author_summary())
+}
+}
+</code></pre></li>
+</ul>
+
+<h3 id="2-4-特性限定">2.4 特性限定</h3>
+
+<ul>
+<li><p>规定用作泛型类型的具体类型，必须实现某些特性</p>
+
+<pre><code class="language-rust">fn some_function&lt;T: Display + Clone, U: Clone + Debug&gt;(t: T, u: U) -&gt; i32 {}
+fn some_function&lt;T,U&gt;(t:T,u:U) -&gt; i32 where T:Display + Clone,U:Clone + Debug{}
+</code></pre></li>
+</ul>
+
+<h3 id="2-5-用特性限定有条件地实现方法">2.5 用特性限定有条件地实现方法</h3>
+
+<pre><code class="language-rust">use std::fmt::Display;
+
+struct Pair&lt;T&gt; {
+    x: T,
+    y: T,
+}
+
+impl&lt;T&gt; Pair&lt;T&gt; {
+    fn new(x: T, y: T) -&gt; Self {
+        Self {x,y}
+    }
+}
+
+// 只有泛型类型T实现了Display和PartialOrd时，才实现cmp_display方法
+impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
+    fn cmp_display(&amp;self) {
+        if self.x &gt;= self.y {
+            println!(&quot;The largest member is x = {}&quot;, self.x);
+        } else {
+            println!(&quot;The largest member is y = {}&quot;, self.y);
+        }
+    }
+}
+</code></pre>
+
+<h3 id="2-6-总括实现">2.6 总括实现</h3>
+
+<ul>
+<li><p>总括实现（blanket implementation）：对实现了某些特性的所有类型实现一些方法</p>
+
+<pre><code class="language-rust">trait Flyable{
+fn fly(&amp;self,src: String,dst: String);
+}
+
+trait Weapon{
+fn kill(&amp;self,enmy: String);
+}
+
+trait AirAttack{
+fn bomb(&amp;self,base: String,dst:String,enmy: String);
+}
+
+// 总括实现：实现了Flyable和Weapon的类型就可以实现AirAttack
+impl&lt;T&gt; AirAttack for T where T:Flyable + Weapon{
+fn bomb(&amp;self,base:String,dst:String,enmy:String){
+    self.fly(base,dst);
+    self.kill(enmy);
+}
+}
+</code></pre></li>
+</ul>
+
+<h2 id="3-生命周期与引用有效性">3 生命周期与引用有效性</h2>
+
+<h3 id="3-1-生命周期可避免悬垂引用">3.1 生命周期可避免悬垂引用</h3>
+
+<pre><code class="language-rust">{
+    let r;// 只声明变量，不初始化是允许的。但是：如果在初始化之前使用它，则出现编译错误。
+    {
+        let x = 5;
+        r = &amp;x; // 发生借用
+    }
+    // 被借用的值x超出作用域，已经失效，这里r成为悬垂指针，出现编译错误。
+    println!(&quot;r: {}&quot;, r);
+}
+</code></pre>
+
+<ul>
+<li>上面示例中，记变量<code>r</code>的生命周期为<code>'a</code>,它的范围为外层的大括号内部；记变量<code>x</code>的生命周期为<code>'b</code>，它的范围为内层的大括号内部。</li>
+<li>编译时，编译器检查变量的生命周期：被引用变量<code>x</code>的生命周期<code>'b</code>，比引用它的变量<code>r</code>的生命周期<code>'a</code>小，通常记作：<code>'b : 'a</code></li>
+<li><font color="red">编译器拒绝编译程序：<strong>被引用对象的生命周期，比引用者的生命周期短</strong></font></li>
+<li>编译器中执行上述生命周期规则检查的组件称作<font color="red"><strong>借用检查器(borrow checker)</strong></font></li>
+
+<li><p>下面是一个正确的例子：被引用对象<code>x</code>的生命周期<code>'b</code>，比引用对象<code>r</code>的生命周期<code>'a</code>长。</p>
+
+<pre><code class="language-rust">{
+let x = 5;            // -----+-- 'b
+                      //      |
+let r = &amp;x;           // --+--+-- 'a
+                      //   |  |
+println!(&quot;r: {}&quot;, r); //   |  |
+                      // --+  |
+}
+</code></pre></li>
+</ul>
+
+<h3 id="3-2-函数中的生命周期">3.2 函数中的生命周期</h3>
+
+<pre><code class="language-rust">fn main() {
+    let string1 = String::from(&quot;abcd&quot;);
+    let string2 = &quot;xyz&quot;;
+
+    let result = longest(string1.as_str(), string2);
+    println!(&quot;The longest string is {}&quot;, result);
+}
+
+fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
+    if x.len() &gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+</code></pre>
+
+<ul>
+<li>上述代码中的<code>longest</code>函数无法通过编译，错误为：缺少生命周期注解</li>
+<li>编译器无法在编译时确定返回值的生命周期是与参数<code>x</code>相同，还是与参数<code>y</code>相同</li>
+</ul>
+
+<h4 id="3-2-1-生命周期注解">3.2.1 生命周期注解</h4>
+
+<ul>
+<li>语法：<code>&amp;'生命周期名称  类型名称</code>，如<code>&amp;'a str</code></li>
+<li>生命周期仅用于引用类型</li>
+<li>生命周期名称通常是一个小写字母
+<font color="red"></li>
+<li>生命周期注解不改变引用的生命周期，只是用于指示多个引用的生命周期之间的关系</li>
+<li>所以，单个生命周期注解没有什么意义，因为没有涉及多个引用，不能指示多个引用的生命周期之间的关系
+</font></li>
+</ul>
+
+<h4 id="3-2-2-函数签名中的生命周期注解">3.2.2 函数签名中的生命周期注解</h4>
+
+<ul>
+<li><p>上面的<code>longest</code>函数改成下面这样就可以通过编译了：</p>
+
+<pre><code class="language-rust">fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
+if x.len() &gt; y.len() {
+    x
+} else {
+    y
+}
+}
+</code></pre></li>
+
+<li><p>上述签名指示两个参数的生命周期、以及返回值的生命周期，是一样长的
+<font color="red"></p></li>
+
+<li><p>生命周期注解只出现在函数签名中，而不用在函数体中，因为编译器可以分析函数体中的代码，不需要任何帮助</p></li>
+
+<li><p>调用函数时，表示生命周期的泛型参数<code>'a</code>被替换成两个参数<code>x</code>和<code>y</code>的生命周期的重叠部分
+</font></p></li>
+
+<li><p>这样，返回值的生命周期等于<code>x</code>和<code>y</code>的生命周期重叠部分，返回值一定在<code>x</code>和<code>y</code>中生命周期较短的那个失效之前有效</p></li>
+</ul>
+
+<h5 id="3-2-2-1-正确调用示例">3.2.2.1 正确调用示例</h5>
+
+<pre><code class="language-rust">fn main() {
+    let string1 = String::from(&quot;long string is long&quot;);
+    {
+        let string2 = String::from(&quot;xyz&quot;);
+        let result = longest(string1.as_str(), string2.as_str());
+        println!(&quot;The longest string is {}&quot;, result);
+    }
+}
+</code></pre>
+
+<ul>
+<li>上述代码中，调用<code>longest</code>时传入的生命周期注解<code>'a</code>是两个参数生命周期的重叠部分，即内层大括号范围</li>
+<li>调用完成后，返回值<code>result</code>的生命周期范围是内层大括号中的后两个语句，比<code>'a</code>小，所以代码有效，可通过编译</li>
+</ul>
+
+<h5 id="3-2-2-2-错误的调用示例">3.2.2.2 错误的调用示例</h5>
+
+<pre><code class="language-rust">fn main() {
+    	let string1 = String::from(&quot;long string is long&quot;);
+    let result;
+    {
+        let string2 = String::from(&quot;xyz&quot;);
+        result = longest(string1.as_str(), string2.as_str());
+    }
+    println!(&quot;The longest string is {}&quot;, result);
+}
+</code></pre>
+
+<ul>
+<li>上述代码中，调用<code>longest</code>时传入的生命周期注解<code>'a</code>是两个参数生命周期的重叠部分，即内层大括号范围</li>
+<li>调用完成后，返回值的生命周期范围等于<code>'a</code>，即内层大括号范围：返回值在离开内层大括号时失效</li>
+<li>最后的语句试图通过<code>result</code>使用返回值，会发生错误。错误为：<code>string2</code>的生命周期不够久</li>
+<li>实际上<code>longest</code>返回的是<code>string1</code>的引用，其生命周期比<code>result</code>长
+
+<ul>
+<li>然而，编译器无法执行动态检查，无法知道函数返回的是<code>string1</code>的引用</li>
+<li>编译器只能执行静态检查，认为传入的生命周期<code>'a</code>的范围为内层大括号，返回值的生命周期范围也是内层大括号</li>
+</ul></li>
+</ul>
+
+<h4 id="3-2-3-深入理解生命周期">3.2.3 深入理解生命周期</h4>
+
+<ul>
+<li><p>指定生命周期注解的方式与函数功能相关，比如说：</p>
+
+<pre><code class="language-rust">fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;str) -&gt; &amp;'a str {
+x
+}
+</code></pre></li>
+
+<li><p>上述代码总是返回第一个参数，所以不需要为第二个参数指定生命周期注解，因为返回值的生命周期与第二个参数没有关系
+<font color="red"></p></li>
+
+<li><p>返回引用类型时，返回值的生命周期必须与某个输入参数相关</p></li>
+
+<li><p>如果不与输入参数相关，则引用指向函数内部创建的资源，函数返回后，返回的引用将成为悬垂指针，使得代码通不过编译</p></li>
+
+<li><p>需要返回函数内部创建的资源的引用时，最好的解决方案是返回一个所有权类型，而不是引用类型
+</font></p></li>
+</ul>
+
+<h3 id="3-3-结构体中的生命周期">3.3 结构体中的生命周期</h3>
+
+<ul>
+<li><p>对于结构体含有的每个引用类型的字段，必须给出生命周期注解</p>
+
+<pre><code class="language-rust">struct ImportantExcerpt&lt;'a&gt; {
+part: &amp;'a str,
+}
+
+fn main() {
+let novel = String::from(&quot;Call me Ishmael. Some years ago...&quot;);
+let first_sentence = novel.split('.').next().expect(&quot;Could not find a '.'&quot;);
+let i = ImportantExcerpt { part: first_sentence };
+}
+</code></pre></li>
+</ul>
+
+<h3 id="3-4-省略生命周期注解">3.4 省略生命周期注解</h3>
+
+<pre><code class="language-rust">fn first_word(s: &amp;str) -&gt; &amp;str {
+    let bytes = s.as_bytes();
+    for (i, &amp;item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &amp;s[0..i];
+        }
+    }
+    &amp;s[..]
+}
+</code></pre>
+
+<ul>
+<li>上述函数签名省略了生命周期注解，但是可以通过编译。但在早期版本的Rust编译器中，生命周期注解是不能省略的。</li>
+<li>后来Rust开发团队发现了一些明确的模式，在这些模式下可以省略生命周期注解，编译器可以推导出生命周期。</li>
+<li>这些模式被添加到编译器中，形成<strong>生命周期省略规则（lifetime elision rules）</strong>。未来可能会发现更多可以省略生命周期注解的模式，从而可以在更多情况下省略生命周期注解。</li>
+<li>省略规则不能提供完整的判断，如果在明确遵循省略规则的情况下，仍然不能推导出生命周期，编译仍然会出错，此时还是需要增加生命周期注解。</li>
+</ul>
+
+<h4 id="3-4-1-生命周期注解省略规则">3.4.1 生命周期注解省略规则</h4>
+
+<ul>
+<li>输入生命周期：函数/方法参数的生命周期</li>
+<li>输出生命周期：函数/方法返回值的生命周期</li>
+</ul>
+
+<ol>
+<li>每个引用类型的参数有自己的生命周期</li>
+<li>如果只有一个输入生命周期，则输出生命周期等于输入生命周期</li>
+<li>如果有一个输入参数为<code>&amp;self</code>或者<code>&amp;mut self</code>，则输出生命周期等于<code>self</code>的生命周期。这一条仅适用于方法。</li>
+</ol>
+
+<h5 id="3-4-1-1-示例1">3.4.1.1 示例1</h5>
+
+<pre><code class="language-dot">digraph demo1{
+	node [margin=0 fontcolor=blue fontsize=16 width=3.5 shape=box]
+	a [label=&quot;fn first_word(s: &amp;str) -&gt; &amp;str {&quot;]
+	b [label=&quot;fn first_word(s: &amp;'a str) -&gt; &amp;str {&quot;]
+	c [label=&quot;fn first_word(s: &amp;'a str) -&gt; &amp;'a str {&quot;]
+	a -&gt; b[label=&quot;规则1：每个输入参数有不同的生命周期&quot; fontsize=&quot;12&quot;]
+	b -&gt; c[label=&quot;规则2：如果只有一个参数，则返回值的生命周期等于参数的生命周期&quot; fontsize=&quot;12&quot;]	
+}
+</code></pre>
+
+<h5 id="3-4-1-2-示例2">3.4.1.2 示例2</h5>
+
+<pre><code class="language-dot">digraph demo1{
+	node [margin=0 fontcolor=blue fontsize=16 width=4 shape=box]
+	a [label=&quot;fn longest(x:&amp;str,y:&amp;str) -&gt; &amp;str {&quot;]
+	b [label=&quot;fn longest(x:&amp;'a str,y:&amp;'b str) -&gt; &amp;str {&quot;]
+	c [label=&quot;编译错误：无法确定返回值的生命周期&quot; fontcolor=&quot;red&quot;]
+	a -&gt; b[label=&quot;规则1：每个输入参数有不同的生命周期&quot; fontsize=&quot;12&quot;]
+	b -&gt; c[label=&quot;规则2：无法应用，因为有多个参数；规则3：无法应用，因为不是方法，没有self引用参数&quot; fontsize=&quot;12&quot;]	
+}
+</code></pre>
+
+<h3 id="3-5-方法定义中的生命周期注解">3.5 方法定义中的生命周期注解</h3>
+
+<h4 id="3-5-1-示例1">3.5.1 示例1</h4>
+
+<pre><code class="language-rust">impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
+    fn level(&amp;self) -&gt; i32 {
+        3
+    }
+}
+</code></pre>
+
+<ul>
+<li>根据规则3，上述<code>level</code>方法中可省略生命周期注解</li>
+<li><code>impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt;</code>中的生命周期注解也可以省略，因为方法的返回值不是引用类型，不需要生命周期</li>
+</ul>
+
+<h4 id="3-5-2-示例2">3.5.2 示例2</h4>
+
+<pre><code class="language-rust">impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
+    fn announce_and_return_part(&amp;self, announcement: &amp;str) -&gt; &amp;str {
+        println!(&quot;Attention please: {}&quot;, announcement);
+        self.part
+    }
+}
+</code></pre>
+
+<ul>
+<li>根据规则3，上述<code>announce_and_return_part</code>方法中可省略生命周期注解，返回值的生命周期等于<code>self</code>的生命周期</li>
+<li><code>impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt;</code>中的生命周期注解不可以省略，因为返回值是引用类型，需要使用这个生命周期</li>
+</ul>
+
+<h3 id="3-6-静态生命周期">3.6 静态生命周期</h3>
+
+<ul>
+<li>静态生命周期用<code>&amp;'static</code>表示</li>
+<li>字面字符串的生命周期都是<code>&amp;'static</code></li>
+<li>全局变量（也称作“静态变量”，在函数/方法体外定义 ）的生命周期也是<code>&amp;'static</code></li>
+<li>通常不需要<code>&amp;'static</code>，多数情况下，问题可能是想创建悬垂引用，或者可用的生命周期不匹配，此时应该解决问题，而不是使用<code>&amp;'static</code></li>
+</ul>
+
+<h3 id="3-7-泛型类型参数-特性限定和生命周期">3.7 泛型类型参数、特性限定和生命周期</h3>
+
+<ul>
+<li><p>将泛型类型参数、特性限定、生命周期结合在一起的写法如下</p>
+
+<pre><code class="language-rust">use std::fmt::Display;
+
+fn longest_with_an_announcement&lt;'a, T&gt;(x: &amp;'a str, y: &amp;'a str, ann: T) -&gt; &amp;'a str where T: Display
+{
+println!(&quot;Announcement! {}&quot;, ann);
+if x.len() &gt; y.len() {
+    x
+} else {
+    y
+}
+}
+</code></pre></li>
+</ul>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/-%E7%AC%AC05%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/-%E7%AC%AC13%E7%AB%A0-%E9%97%AD%E5%8C%85%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/">
+            <span class="next-text nav-default"></span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://www.rustcargo.com/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'baoge';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:your@email.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/rustcargo" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://www.rustcargo.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Bauer
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script id="tencent_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+	hm.src = "//tajs.qq.com/stats?sId=66490833";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

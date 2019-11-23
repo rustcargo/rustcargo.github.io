@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>结构体 on RustCargo - rust语言中文网</title>
+    <link>https://www.rustcargo.com/tags/%E7%BB%93%E6%9E%84%E4%BD%93/</link>
+    <description>Recent content in 结构体 on RustCargo - rust语言中文网</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Nov 2019 12:49:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.rustcargo.com/tags/%E7%BB%93%E6%9E%84%E4%BD%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>结构体</title>
+      <link>https://www.rustcargo.com/post/-%E7%AC%AC05%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/post/-%E7%AC%AC05%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/</guid>
+      <description>第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&amp;quot;someone@example.com&amp;quot;), username: String::from(&amp;quot;someusername123&amp;quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&amp;quot;anotheremail@example.com&amp;quot;); } 只能标记结构体变量为mut，不能标记单个字段为mut，</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -344,15 +344,18 @@ if (!doNotTrack) {
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/%E5%85%B3%E4%BA%8E%E8%BF%AD%E4%BB%A3/"></a>
+      <a class="post-link" href="/post/%E7%AC%AC07%E7%AB%A0-%E6%A8%A1%E5%9D%97/">模块</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
       </time>
-      
-      <span class="more-meta"> 约 569 字 </span>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 1339 字 </span>
       <span class="more-meta"> 预计阅读 3 分钟 </span>
       
       
@@ -363,10 +366,10 @@ if (!doNotTrack) {
   <div class="post-content">
     
     <div class="post-summary">
-      关于迭代 for迭代  对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代时，对象的所有权不移动，迭代得到的是元素的引用  示例1：对集合类型的对象进行for迭代 fn main(){ use std::collections::HashMap; let mut scores = HashMap::new(); scores.insert(String::from(&quot;Blue&quot;), 10); scores.insert(String::from(&quot;Yellow&quot;), 50); // 1 这里对集合对象进行迭代 for k in scores{ println!(&quot;{:?}&quot;,k); // 得到的 k 是具有所有权的类型,这个解构语句移动了子元素的所有权 let (x,y) = k; println!(&quot;{:?} =&gt; {:?}&quot;,x,y); // 这个语句错误: k 的所有权已经移动(解构到x,y中了),k已经无效 println!(&quot;{:?}&quot;,k); } // 这个语句错误: 前面的for语句移动了scores的所有权,scores已经无效 println!(&quot;{:?}&quot;,scores); }  示例2：对集合类型的对象引用进行for迭代 // 这里对集合对象的引用进行迭代 for k in &amp;scores{ println!(&quot;{:?}&quot;,k); // 得到的 k 是引用类型,没有所有权,下面的解构语句不会移动子元素的所有权 let (x,y) = k; println!(&quot;{:?} =&gt; {:?
+      第07章 模块 1 mod与文件系统 1.1 入门 编译以文件为单位进行，无法直接使用定义在其他文件中的常量、变量、函数等 不像C/C++那样有头文件的概念，
     </div>
     <div class="read-more">
-      <a href="/post/%E5%85%B3%E4%BA%8E%E8%BF%AD%E4%BB%A3/" class="read-more-link">阅读全文</a>
+      <a href="/post/%E7%AC%AC07%E7%AB%A0-%E6%A8%A1%E5%9D%97/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -377,16 +380,19 @@ if (!doNotTrack) {
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96/"></a>
+      <a class="post-link" href="/post/-%E7%AC%AC18%E7%AB%A0-%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/">模式匹配</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
       </time>
-      
-      <span class="more-meta"> 约 225 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 2556 字 </span>
+      <span class="more-meta"> 预计阅读 6 分钟 </span>
       
       
       
@@ -396,11 +402,10 @@ if (!doNotTrack) {
   <div class="post-content">
     
     <div class="post-summary">
-      字符串格式化  参考std::fmt模块的文档 模块std::fmt包含对format!宏的运行时支持，而format!宏是print!系列宏的基础  1 入门 format!(&quot;Hello&quot;); // =&gt; &quot;Hello&quot; format!(&quot;Hello, {}!&quot;, &quot;world&quot;); // =&gt; &quot;Hello, world!&quot; format!(&quot;The number is {}&quot;, 1); // =&gt; &quot;The number is 1&quot; format!(&quot;{:?}&quot;, (3, 4)); // =&gt; &quot;(3, 4)&quot; format!(&quot;{value}&quot;, value=4); // =&gt; &quot;4&quot; format!(&quot;{} {}&quot;, 1, 2); // =&gt; &quot;1 2&quot; format!(&quot;{:04}&quot;, 42); // =&gt; &quot;0042&quot; with leading zeros   注意：第一个参数必须是字面字符串，不能是字符串类型的变量 注意：必须使用每个参数至少一次，如果有没有使用的参数，则编译错误  
-2 位置参数  默认的{}表示”下一个参数“ 可以用{整数}来指定参数序号（从0开始） 混合使用带序号的，和不带序号的大括号时，不带序号的大括号依次使用各个参数，不影响带序号的各个参数
+      第18章 模式匹配 1 使用模式的场合 1.1 match分支 match表达式必须是穷尽的(exhaustive) match VALUE { PATTERN =&gt; EXPRESSION, PATTERN =&gt; EXPRESSION, PATTERN =&gt; EXPRESSION, } 1.2 if let条件
     </div>
     <div class="read-more">
-      <a href="/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96/" class="read-more-link">阅读全文</a>
+      <a href="/post/-%E7%AC%AC18%E7%AB%A0-%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -411,16 +416,19 @@ if (!doNotTrack) {
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/%E5%AF%86%E7%A0%81%E5%AD%A6/"></a>
+      <a class="post-link" href="/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">泛型、特性与生命周期</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
       </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 4740 字 </span>
+      <span class="more-meta"> 预计阅读 10 分钟 </span>
       
       
       
@@ -430,10 +438,10 @@ if (!doNotTrack) {
   <div class="post-content">
     
     <div class="post-summary">
-      https://blog.csdn.net/s_lisheng/article/details/80567435
+      第10章 泛型、特性与生命周期 0 前言 0.0 重复的代码 fn main() { let number_list = vec![34, 50, 25, 100, 65]; let mut largest = number_list[0]; for number in number_list { if number &gt; largest { largest = number; } } println!(&quot;The largest number is {}&quot;, largest); let number_list = vec![102, 34, 6000, 89, 54, 2, 43,
     </div>
     <div class="read-more">
-      <a href="/post/%E5%AF%86%E7%A0%81%E5%AD%A6/" class="read-more-link">阅读全文</a>
+      <a href="/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -499,14 +507,6 @@ if (!doNotTrack) {
       
       <li >
         <a href="/page/9/">9</a>
-      </li>
-      
-      <li >
-        <a href="/page/10/">10</a>
-      </li>
-      
-      <li >
-        <a href="/page/11/">11</a>
       </li>
       
     </ul>

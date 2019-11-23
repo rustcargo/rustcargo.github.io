@@ -344,48 +344,18 @@ if (!doNotTrack) {
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/mut/"></a>
+      <a class="post-link" href="/post/%E7%AC%AC12%E7%AB%A0-%E4%B8%80%E4%B8%AAio%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A8%8B%E5%BA%8F/">一个IO项目：构建命令行程序</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
       </time>
-      
-      <span class="more-meta"> 约 115 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&gt;i32{ b = 100; a+b } }  mut与引用 let a = 123; let b = 456; let pi :&amp;i32 = &amp;a; //pi = &amp;b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 let mut pi : &amp;i32 = &amp;a; pi = &amp;b;// 正确：用mut修饰了pi,可以重新赋值 //*pi = 456;// 错误: 没有对引用类型&amp;i32使用mut,不可以对引用的资源进行修改 let mut a = 123; let pi : &amp;mut i32 = &amp;mut a; //pi = &amp;mut b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 *pi = 456;// 正确: 对数据类型&amp;i32使用mut,可以对引用的资源进行修改 let mut a = 123; let mut b = 456; let mut pi :&amp;mut i32 = &amp;mut a; pi = &amp;mut b;// 正确: 用mut修饰了pi,可以重新赋值 *pi = 456;// 正确: 对数据类型&amp;i32使用mut,可以对引用的资源进行修改  
-    </div>
-    <div class="read-more">
-      <a href="/post/mut/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/rust-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 472 字 </span>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 1322 字 </span>
       <span class="more-meta"> 预计阅读 3 分钟 </span>
       
       
@@ -396,16 +366,10 @@ if (!doNotTrack) {
   <div class="post-content">
     
     <div class="post-summary">
-      1. as 运算符 as 运算符有点像 C 中的强制类型转换，区别在于， 它只能用于原始类型(i32 、i64 、f32 、
-f64 、 u8 、 u32 、 char 等类型),并且它是安全的。
-例
-在 Rust 中，不同的数值类型是不能进行隐式转换的，比如：
- let b: i64 = 1i32;  会出现编译错误，提示无法进行类型转换。
-error[E0308]: mismatched types --&gt; src\main.rs:2:18 | 2 | let b: i64 = 1i32; | ^^^^ expected i64, found i32 help: change the type of the numeric literal from `i32` to `i64`  这时可以使用as 进行转换。
-let b: i64 = 1i32 as i64;   为什么它是安全的？  尝试以下代码：
+      第12章 一个IO项目：构建命令行程序 1 接受命令行参数 用std::env::args()方法获取命令行参数，得到的是std::env::Arg
     </div>
     <div class="read-more">
-      <a href="/post/rust-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="read-more-link">阅读全文</a>
+      <a href="/post/%E7%AC%AC12%E7%AB%A0-%E4%B8%80%E4%B8%AAio%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A8%8B%E5%BA%8F/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -416,15 +380,54 @@ let b: i64 = 1i32 as i64;   为什么它是安全的？  尝试以下代码：
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/-%E7%AC%AC04%E7%AB%A0-%E8%AE%A4%E8%AF%86%E6%89%80%E6%9C%89%E6%9D%83/"></a>
+      <a class="post-link" href="/post/%E5%85%B3%E4%BA%8E%E8%BF%AD%E4%BB%A3/">关于迭代</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
       </time>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 1586 字 </span>
+      <span class="more-meta"> 预计阅读 4 分钟 </span>
       
-      <span class="more-meta"> 约 196 字 </span>
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      关于迭代 for迭代 对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代
+    </div>
+    <div class="read-more">
+      <a href="/post/%E5%85%B3%E4%BA%8E%E8%BF%AD%E4%BB%A3/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
+      </time>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 364 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
@@ -435,11 +438,10 @@ let b: i64 = 1i32 as i64;   为什么它是安全的？  尝试以下代码：
   <div class="post-content">
     
     <div class="post-summary">
-      第04章 认识所有权 1 所有权 1.1 所有权  每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放  1.2 转移所有权 对变量进行赋值、作为参数传入函数、作为返回值从函数返回时，根据变量类型是否实现了Copy特性，有不同的行为
- 类型实现了Copy特性：资源被复制，原变量仍然有效 类型没有实现Copy特性：资源的所有权被转移，原变量失效  1.3 Copy特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Copy特性 无论是编译器自动为基础类型实现Copy特性，还是通过明确声明为自定义类型实现Copy特性，Copy行为都是按比特复制，这个行为不可更改 全部字段都实现了Copy特性时，自定义类型可以实现Copy特性  注意：是可以实现Copy特性，不是实现了Copy特性 在可以实现Copy特性的前提下，可以用两种方法之一实现Copy特性  使用#[derive(Copy)] 使用impl Clone for 类型名{}：不需要提供任何方法   Clone是Copy的基类型，实现Copy的类型，必须也实现Clone 对Copy特性的使用，总是自动的，无法明确要求使用Copy特性  1.4 Clone特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Clone特性 编译器自动为基础类型实现的Clone行为是按比特复制，这个行为不可改变 可以为任何自定义类型用两种方式之一实现Clone  使用#[derive(Clone)]：要求自定义类型的字段都是实现了Clone的类型 使用impl Clone for 类型名{}：需要提供clone方法：fn clone(&amp;self) -&gt; Self，其行为可以自行定义  对Clone行为的调用，总是手动的，编译器不会自动调用Clone特性  Copy和Clone的对比 相同点  编译器为所有基础类型自动实现了Copy和Clone特性 编译器为所有基础类型实现的Copy/Clone行为都是按比特复制，这个行为不可改变 编译器不会自动为自定义类型实现Copy/Clone特性，必须用两种方法之一明确声明 所有字段都实现了Copy/Clone特性时，可以通过#[derive]为自定义类型实现Copy/Clone特性 通过#[derive]实现Copy/Clone特性时，特性行为都是按比特复制，不需要额外提供方法代码  差异点  只有所有字段都实现了Copy的时候，自定义类型才能够实现Copy，且Copy行为是按比特复制，这个行为不可改变 无论是否所有字段都实现了Clone，都可以为自定义类型实现Clone，且通过impl Clone for 类型实现Clone时，可自定义特性行为 对Copy特性的调用，总是自动的：赋值、作为参数传入函数、作为返回值从函数传出时，  如果类型实现了Copy特性，则自动使用Copy特性 如果类型没有实现Copy特性，则转移所有权  对Clone特性的调用，总是手动的：必须明确地调用clone方法来实现对Clone特性的调用 Clone是Copy的基础特性，实现Copy特性时，必须同时实现Clone特性；反之则不成立：实现Clone特性时，不一定需要实现Copy特性
+      小技巧 关于属性 对整个文件使用某属性： 井号后跟感叹号，然后跟属性说明 常用属性 允许未使用的代码：#[allow(dead_code)] #![allow(dead_code)] const PI : f64
     </div>
     <div class="read-more">
-      <a href="/post/-%E7%AC%AC04%E7%AB%A0-%E8%AE%A4%E8%AF%86%E6%89%80%E6%9C%89%E6%9D%83/" class="read-more-link">阅读全文</a>
+      <a href="/post/%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -505,14 +507,6 @@ let b: i64 = 1i32 as i64;   为什么它是安全的？  尝试以下代码：
       
       <li >
         <a href="/page/9/">9</a>
-      </li>
-      
-      <li >
-        <a href="/page/10/">10</a>
-      </li>
-      
-      <li >
-        <a href="/page/11/">11</a>
       </li>
       
     </ul>

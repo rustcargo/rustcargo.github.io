@@ -38,11 +38,83 @@
     </item>
     
     <item>
+      <title>智能指针</title>
+      <link>https://www.rustcargo.com/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>模式匹配</title>
+      <link>https://www.rustcargo.com/tags/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/tags/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>泛型</title>
+      <link>https://www.rustcargo.com/tags/%E6%B3%9B%E5%9E%8B/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/tags/%E6%B3%9B%E5%9E%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>特性</title>
+      <link>https://www.rustcargo.com/tags/%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/tags/%E7%89%B9%E6%80%A7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>生命周期</title>
+      <link>https://www.rustcargo.com/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>结构体</title>
+      <link>https://www.rustcargo.com/tags/%E7%BB%93%E6%9E%84%E4%BD%93/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/tags/%E7%BB%93%E6%9E%84%E4%BD%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>迭代器</title>
+      <link>https://www.rustcargo.com/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>错误</title>
       <link>https://www.rustcargo.com/tags/%E9%94%99%E8%AF%AF/</link>
       <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
       
       <guid>https://www.rustcargo.com/tags/%E9%94%99%E8%AF%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>闭包</title>
+      <link>https://www.rustcargo.com/tags/%E9%97%AD%E5%8C%85/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/tags/%E9%97%AD%E5%8C%85/</guid>
       <description></description>
     </item>
     

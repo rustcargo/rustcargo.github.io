@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>错误处理 - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,10 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="第09章 错误处理 1 panic!与不可恢复错误  程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort）
-[profile.release] panic = &#39;abort&#39;  调试运行时，设置环境变量RUST_BACKTRACE=1，可以在panic!时显示详细的调用栈
-$ RUST_BACKTRACE=1 cargo run Finished dev [unoptimized &#43; debuginfo] target(s) in 0.0 secs Running `target/debug/panic` thread &#39;main&#39; panicked at &#39;index out of bounds: the len is 3 but the index is 99&#39;, /checkout/src/liballoc/vec.rs:1555:10 stack backtrace: 0: std::sys:👿:backtrace::tracing:👿:unwind_backtrace at /checkout/src/libstd/sys/unix/backtrace/tracing/gcc_s.rs:49 1: std::sys_common::backtrace::_print at /checkout/src/libstd/sys_common/backtrace.rs:71 ......   2 Result与可恢复错误  标准库中的std::result::Result表示可恢复错误
-pub enum Result&amp;lt;T, E&amp;gt; { Ok(T), Err(E), }  use std::fs::File; use std::io::ErrorKind; pub fn main() { let f = File::open(&amp;quot;hello." />
+  <meta name="description" content="第09章 错误处理 1 panic!与不可恢复错误 程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort） [profile.release] panic = &#39;abort&#39;" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -62,33 +59,26 @@ pub enum Result&amp;lt;T, E&amp;gt; { Ok(T), Err(E), }  use std::fs::File; use s
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="第09章 错误处理 1 panic!与不可恢复错误  程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort）
-[profile.release] panic = &#39;abort&#39;  调试运行时，设置环境变量RUST_BACKTRACE=1，可以在panic!时显示详细的调用栈
-$ RUST_BACKTRACE=1 cargo run Finished dev [unoptimized &#43; debuginfo] target(s) in 0.0 secs Running `target/debug/panic` thread &#39;main&#39; panicked at &#39;index out of bounds: the len is 3 but the index is 99&#39;, /checkout/src/liballoc/vec.rs:1555:10 stack backtrace: 0: std::sys:👿:backtrace::tracing:👿:unwind_backtrace at /checkout/src/libstd/sys/unix/backtrace/tracing/gcc_s.rs:49 1: std::sys_common::backtrace::_print at /checkout/src/libstd/sys_common/backtrace.rs:71 ......   2 Result与可恢复错误  标准库中的std::result::Result表示可恢复错误
-pub enum Result&lt;T, E&gt; { Ok(T), Err(E), }  use std::fs::File; use std::io::ErrorKind; pub fn main() { let f = File::open(&quot;hello." />
+<meta property="og:title" content="错误处理" />
+<meta property="og:description" content="第09章 错误处理 1 panic!与不可恢复错误 程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort） [profile.release] panic = &#39;abort&#39;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/%E7%AC%AC09%E7%AB%A0-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content="第09章 错误处理 1 panic!与不可恢复错误  程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort）
-[profile.release] panic = &#39;abort&#39;  调试运行时，设置环境变量RUST_BACKTRACE=1，可以在panic!时显示详细的调用栈
-$ RUST_BACKTRACE=1 cargo run Finished dev [unoptimized &#43; debuginfo] target(s) in 0.0 secs Running `target/debug/panic` thread &#39;main&#39; panicked at &#39;index out of bounds: the len is 3 but the index is 99&#39;, /checkout/src/liballoc/vec.rs:1555:10 stack backtrace: 0: std::sys:👿:backtrace::tracing:👿:unwind_backtrace at /checkout/src/libstd/sys/unix/backtrace/tracing/gcc_s.rs:49 1: std::sys_common::backtrace::_print at /checkout/src/libstd/sys_common/backtrace.rs:71 ......   2 Result与可恢复错误  标准库中的std::result::Result表示可恢复错误
-pub enum Result&lt;T, E&gt; { Ok(T), Err(E), }  use std::fs::File; use std::io::ErrorKind; pub fn main() { let f = File::open(&quot;hello.">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="错误处理">
+<meta itemprop="description" content="第09章 错误处理 1 panic!与不可恢复错误 程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort） [profile.release] panic = &#39;abort&#39;">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="928">
 
 
 
-<meta itemprop="wordCount" content="397">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="第09章 错误处理 1 panic!与不可恢复错误  程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort）
-[profile.release] panic = &#39;abort&#39;  调试运行时，设置环境变量RUST_BACKTRACE=1，可以在panic!时显示详细的调用栈
-$ RUST_BACKTRACE=1 cargo run Finished dev [unoptimized &#43; debuginfo] target(s) in 0.0 secs Running `target/debug/panic` thread &#39;main&#39; panicked at &#39;index out of bounds: the len is 3 but the index is 99&#39;, /checkout/src/liballoc/vec.rs:1555:10 stack backtrace: 0: std::sys:👿:backtrace::tracing:👿:unwind_backtrace at /checkout/src/libstd/sys/unix/backtrace/tracing/gcc_s.rs:49 1: std::sys_common::backtrace::_print at /checkout/src/libstd/sys_common/backtrace.rs:71 ......   2 Result与可恢复错误  标准库中的std::result::Result表示可恢复错误
-pub enum Result&lt;T, E&gt; { Ok(T), Err(E), }  use std::fs::File; use std::io::ErrorKind; pub fn main() { let f = File::open(&quot;hello."/>
+<meta name="twitter:title" content="错误处理"/>
+<meta name="twitter:description" content="第09章 错误处理 1 panic!与不可恢复错误 程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort） [profile.release] panic = &#39;abort&#39;"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -352,14 +342,17 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">错误处理</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 397 字 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 928 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -573,12 +566,15 @@ let home: IpAddr = &quot;127.0.0.1&quot;.parse().unwrap();
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E7%AC%AC08%E7%AB%A0-%E9%80%9A%E7%94%A8%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B/">
+          <a class="prev" href="/post/001_panic_error/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -588,12 +584,12 @@ let home: IpAddr = &quot;127.0.0.1&quot;.parse().unwrap();
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">错误处理</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/%E7%AC%AC11%E7%AB%A0-%E6%B5%8B%E8%AF%95/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/-%E7%AC%AC13%E7%AB%A0-%E9%97%AD%E5%8C%85%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/">
+            <span class="next-text nav-default">闭包与迭代器</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

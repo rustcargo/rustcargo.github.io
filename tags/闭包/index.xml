@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>闭包 on RustCargo - rust语言中文网</title>
+    <link>https://www.rustcargo.com/tags/%E9%97%AD%E5%8C%85/</link>
+    <description>Recent content in 闭包 on RustCargo - rust语言中文网</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Nov 2019 12:49:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.rustcargo.com/tags/%E9%97%AD%E5%8C%85/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>闭包与迭代器</title>
+      <link>https://www.rustcargo.com/post/-%E7%AC%AC13%E7%AB%A0-%E9%97%AD%E5%8C%85%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/post/-%E7%AC%AC13%E7%AB%A0-%E9%97%AD%E5%8C%85%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/</guid>
+      <description>第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;amp;i32) -&amp;gt; i32 { t + *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;amp;i32) -&amp;gt; i32 {</description>
+    </item>
+    
+  </channel>
+</rss>

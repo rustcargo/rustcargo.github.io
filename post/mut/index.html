@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>mut - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content=" mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&amp;gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&amp;gt;i32{ b = 100; a&#43;b } }  mut与引用 let a = 123; let b = 456; let pi :&amp;amp;i32 = &amp;amp;a; //pi = &amp;amp;b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 let mut pi : &amp;amp;i32 = &amp;amp;a; pi = &amp;amp;b;// 正确：用mut修饰了pi,可以重新赋值 //*pi = 456;// 错误: 没有对引用类型&amp;amp;i32使用mut,不可以对引用的资源进行修改 let mut a = 123; let pi : &amp;amp;mut i32 = &amp;amp;mut a; //pi = &amp;amp;mut b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 *pi = 456;// 正确: 对数据类型&amp;amp;i32使用mut,可以对引用的资源进行修改 let mut a = 123; let mut b = 456; let mut pi :&amp;amp;mut i32 = &amp;amp;mut a; pi = &amp;amp;mut b;// 正确: 用mut修饰了pi,可以重新赋值 *pi = 456;// 正确: 对数据类型&amp;amp;i32使用mut,可以对引用的资源进行修改  " />
+  <meta name="description" content="mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&amp;gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&amp;gt;i32{ b = 100; a&#43;b } } mut与引用 let a = 123;" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -59,24 +59,26 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content=" mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&gt;i32{ b = 100; a&#43;b } }  mut与引用 let a = 123; let b = 456; let pi :&amp;i32 = &amp;a; //pi = &amp;b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 let mut pi : &amp;i32 = &amp;a; pi = &amp;b;// 正确：用mut修饰了pi,可以重新赋值 //*pi = 456;// 错误: 没有对引用类型&amp;i32使用mut,不可以对引用的资源进行修改 let mut a = 123; let pi : &amp;mut i32 = &amp;mut a; //pi = &amp;mut b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 *pi = 456;// 正确: 对数据类型&amp;i32使用mut,可以对引用的资源进行修改 let mut a = 123; let mut b = 456; let mut pi :&amp;mut i32 = &amp;mut a; pi = &amp;mut b;// 正确: 用mut修饰了pi,可以重新赋值 *pi = 456;// 正确: 对数据类型&amp;i32使用mut,可以对引用的资源进行修改  " />
+<meta property="og:title" content="mut" />
+<meta property="og:description" content="mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&gt;i32{ b = 100; a&#43;b } } mut与引用 let a = 123;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/mut/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content=" mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&gt;i32{ b = 100; a&#43;b } }  mut与引用 let a = 123; let b = 456; let pi :&amp;i32 = &amp;a; //pi = &amp;b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 let mut pi : &amp;i32 = &amp;a; pi = &amp;b;// 正确：用mut修饰了pi,可以重新赋值 //*pi = 456;// 错误: 没有对引用类型&amp;i32使用mut,不可以对引用的资源进行修改 let mut a = 123; let pi : &amp;mut i32 = &amp;mut a; //pi = &amp;mut b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 *pi = 456;// 正确: 对数据类型&amp;i32使用mut,可以对引用的资源进行修改 let mut a = 123; let mut b = 456; let mut pi :&amp;mut i32 = &amp;mut a; pi = &amp;mut b;// 正确: 用mut修饰了pi,可以重新赋值 *pi = 456;// 正确: 对数据类型&amp;i32使用mut,可以对引用的资源进行修改  ">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="mut">
+<meta itemprop="description" content="mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&gt;i32{ b = 100; a&#43;b } } mut与引用 let a = 123;">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="331">
 
 
 
-<meta itemprop="wordCount" content="115">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content=" mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&gt;i32{ b = 100; a&#43;b } }  mut与引用 let a = 123; let b = 456; let pi :&amp;i32 = &amp;a; //pi = &amp;b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 let mut pi : &amp;i32 = &amp;a; pi = &amp;b;// 正确：用mut修饰了pi,可以重新赋值 //*pi = 456;// 错误: 没有对引用类型&amp;i32使用mut,不可以对引用的资源进行修改 let mut a = 123; let pi : &amp;mut i32 = &amp;mut a; //pi = &amp;mut b;// 错误: 没有用mut修饰pi,不可以对pi重新赋值 *pi = 456;// 正确: 对数据类型&amp;i32使用mut,可以对引用的资源进行修改 let mut a = 123; let mut b = 456; let mut pi :&amp;mut i32 = &amp;mut a; pi = &amp;mut b;// 正确: 用mut修饰了pi,可以重新赋值 *pi = 456;// 正确: 对数据类型&amp;i32使用mut,可以对引用的资源进行修改  "/>
+<meta name="twitter:title" content="mut"/>
+<meta name="twitter:description" content="mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&gt;i32{ b = 100; a&#43;b } } mut与引用 let a = 123;"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -340,14 +342,17 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">mut</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 115 字 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 331 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -431,12 +436,15 @@ pi = &amp;mut b;// 正确: 用mut修饰了pi,可以重新赋值
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/002%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96/">
+          <a class="prev" href="/post/book-docs/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -446,12 +454,12 @@ pi = &amp;mut b;// 正确: 用mut修饰了pi,可以重新赋值
 </svg>
 
             </i>
-            <span class="prev-text nav-default">字符串格式化</span>
+            <span class="prev-text nav-default">Rust在线文档</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
           <a class="next" href="/post/rust-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
-            <span class="next-text nav-default"></span>
+            <span class="next-text nav-default">Rust 中的类型转换</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

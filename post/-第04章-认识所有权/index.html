@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>认识所有权 - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="第04章 认识所有权 1 所有权 1.1 所有权  每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放  1.2 转移所有权 对变量进行赋值、作为参数传入函数、作为返回值从函数返回时，根据变量类型是否实现了Copy特性，有不同的行为
- 类型实现了Copy特性：资源被复制，原变量仍然有效 类型没有实现Copy特性：资源的所有权被转移，原变量失效  1.3 Copy特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Copy特性 无论是编译器自动为基础类型实现Copy特性，还是通过明确声明为自定义类型实现Copy特性，Copy行为都是按比特复制，这个行为不可更改 全部字段都实现了Copy特性时，自定义类型可以实现Copy特性  注意：是可以实现Copy特性，不是实现了Copy特性 在可以实现Copy特性的前提下，可以用两种方法之一实现Copy特性  使用#[derive(Copy)] 使用impl Clone for 类型名{}：不需要提供任何方法   Clone是Copy的基类型，实现Copy的类型，必须也实现Clone 对Copy特性的使用，总是自动的，无法明确要求使用Copy特性  1.4 Clone特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Clone特性 编译器自动为基础类型实现的Clone行为是按比特复制，这个行为不可改变 可以为任何自定义类型用两种方式之一实现Clone  使用#[derive(Clone)]：要求自定义类型的字段都是实现了Clone的类型 使用impl Clone for 类型名{}：需要提供clone方法：fn clone(&amp;amp;self) -&amp;gt; Self，其行为可以自行定义  对Clone行为的调用，总是手动的，编译器不会自动调用Clone特性  Copy和Clone的对比 相同点  编译器为所有基础类型自动实现了Copy和Clone特性 编译器为所有基础类型实现的Copy/Clone行为都是按比特复制，这个行为不可改变 编译器不会自动为自定义类型实现Copy/Clone特性，必须用两种方法之一明确声明 所有字段都实现了Copy/Clone特性时，可以通过#[derive]为自定义类型实现Copy/Clone特性 通过#[derive]实现Copy/Clone特性时，特性行为都是按比特复制，不需要额外提供方法代码  差异点  只有所有字段都实现了Copy的时候，自定义类型才能够实现Copy，且Copy行为是按比特复制，这个行为不可改变 无论是否所有字段都实现了Clone，都可以为自定义类型实现Clone，且通过impl Clone for 类型实现Clone时，可自定义特性行为 对Copy特性的调用，总是自动的：赋值、作为参数传入函数、作为返回值从函数传出时，  如果类型实现了Copy特性，则自动使用Copy特性 如果类型没有实现Copy特性，则转移所有权  对Clone特性的调用，总是手动的：必须明确地调用clone方法来实现对Clone特性的调用 Clone是Copy的基础特性，实现Copy特性时，必须同时实现Clone特性；反之则不成立：实现Clone特性时，不一定需要实现Copy特性" />
+  <meta name="description" content="1 所有权 1.1 所有权 每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放 1.2 转移所有权 对变量进行赋值、" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -60,27 +59,26 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="第04章 认识所有权 1 所有权 1.1 所有权  每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放  1.2 转移所有权 对变量进行赋值、作为参数传入函数、作为返回值从函数返回时，根据变量类型是否实现了Copy特性，有不同的行为
- 类型实现了Copy特性：资源被复制，原变量仍然有效 类型没有实现Copy特性：资源的所有权被转移，原变量失效  1.3 Copy特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Copy特性 无论是编译器自动为基础类型实现Copy特性，还是通过明确声明为自定义类型实现Copy特性，Copy行为都是按比特复制，这个行为不可更改 全部字段都实现了Copy特性时，自定义类型可以实现Copy特性  注意：是可以实现Copy特性，不是实现了Copy特性 在可以实现Copy特性的前提下，可以用两种方法之一实现Copy特性  使用#[derive(Copy)] 使用impl Clone for 类型名{}：不需要提供任何方法   Clone是Copy的基类型，实现Copy的类型，必须也实现Clone 对Copy特性的使用，总是自动的，无法明确要求使用Copy特性  1.4 Clone特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Clone特性 编译器自动为基础类型实现的Clone行为是按比特复制，这个行为不可改变 可以为任何自定义类型用两种方式之一实现Clone  使用#[derive(Clone)]：要求自定义类型的字段都是实现了Clone的类型 使用impl Clone for 类型名{}：需要提供clone方法：fn clone(&amp;self) -&gt; Self，其行为可以自行定义  对Clone行为的调用，总是手动的，编译器不会自动调用Clone特性  Copy和Clone的对比 相同点  编译器为所有基础类型自动实现了Copy和Clone特性 编译器为所有基础类型实现的Copy/Clone行为都是按比特复制，这个行为不可改变 编译器不会自动为自定义类型实现Copy/Clone特性，必须用两种方法之一明确声明 所有字段都实现了Copy/Clone特性时，可以通过#[derive]为自定义类型实现Copy/Clone特性 通过#[derive]实现Copy/Clone特性时，特性行为都是按比特复制，不需要额外提供方法代码  差异点  只有所有字段都实现了Copy的时候，自定义类型才能够实现Copy，且Copy行为是按比特复制，这个行为不可改变 无论是否所有字段都实现了Clone，都可以为自定义类型实现Clone，且通过impl Clone for 类型实现Clone时，可自定义特性行为 对Copy特性的调用，总是自动的：赋值、作为参数传入函数、作为返回值从函数传出时，  如果类型实现了Copy特性，则自动使用Copy特性 如果类型没有实现Copy特性，则转移所有权  对Clone特性的调用，总是手动的：必须明确地调用clone方法来实现对Clone特性的调用 Clone是Copy的基础特性，实现Copy特性时，必须同时实现Clone特性；反之则不成立：实现Clone特性时，不一定需要实现Copy特性" />
+<meta property="og:title" content="认识所有权" />
+<meta property="og:description" content="1 所有权 1.1 所有权 每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放 1.2 转移所有权 对变量进行赋值、" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/-%E7%AC%AC04%E7%AB%A0-%E8%AE%A4%E8%AF%86%E6%89%80%E6%9C%89%E6%9D%83/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content="第04章 认识所有权 1 所有权 1.1 所有权  每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放  1.2 转移所有权 对变量进行赋值、作为参数传入函数、作为返回值从函数返回时，根据变量类型是否实现了Copy特性，有不同的行为
- 类型实现了Copy特性：资源被复制，原变量仍然有效 类型没有实现Copy特性：资源的所有权被转移，原变量失效  1.3 Copy特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Copy特性 无论是编译器自动为基础类型实现Copy特性，还是通过明确声明为自定义类型实现Copy特性，Copy行为都是按比特复制，这个行为不可更改 全部字段都实现了Copy特性时，自定义类型可以实现Copy特性  注意：是可以实现Copy特性，不是实现了Copy特性 在可以实现Copy特性的前提下，可以用两种方法之一实现Copy特性  使用#[derive(Copy)] 使用impl Clone for 类型名{}：不需要提供任何方法   Clone是Copy的基类型，实现Copy的类型，必须也实现Clone 对Copy特性的使用，总是自动的，无法明确要求使用Copy特性  1.4 Clone特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Clone特性 编译器自动为基础类型实现的Clone行为是按比特复制，这个行为不可改变 可以为任何自定义类型用两种方式之一实现Clone  使用#[derive(Clone)]：要求自定义类型的字段都是实现了Clone的类型 使用impl Clone for 类型名{}：需要提供clone方法：fn clone(&amp;self) -&gt; Self，其行为可以自行定义  对Clone行为的调用，总是手动的，编译器不会自动调用Clone特性  Copy和Clone的对比 相同点  编译器为所有基础类型自动实现了Copy和Clone特性 编译器为所有基础类型实现的Copy/Clone行为都是按比特复制，这个行为不可改变 编译器不会自动为自定义类型实现Copy/Clone特性，必须用两种方法之一明确声明 所有字段都实现了Copy/Clone特性时，可以通过#[derive]为自定义类型实现Copy/Clone特性 通过#[derive]实现Copy/Clone特性时，特性行为都是按比特复制，不需要额外提供方法代码  差异点  只有所有字段都实现了Copy的时候，自定义类型才能够实现Copy，且Copy行为是按比特复制，这个行为不可改变 无论是否所有字段都实现了Clone，都可以为自定义类型实现Clone，且通过impl Clone for 类型实现Clone时，可自定义特性行为 对Copy特性的调用，总是自动的：赋值、作为参数传入函数、作为返回值从函数传出时，  如果类型实现了Copy特性，则自动使用Copy特性 如果类型没有实现Copy特性，则转移所有权  对Clone特性的调用，总是手动的：必须明确地调用clone方法来实现对Clone特性的调用 Clone是Copy的基础特性，实现Copy特性时，必须同时实现Clone特性；反之则不成立：实现Clone特性时，不一定需要实现Copy特性">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="认识所有权">
+<meta itemprop="description" content="1 所有权 1.1 所有权 每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放 1.2 转移所有权 对变量进行赋值、">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="1943">
 
 
 
-<meta itemprop="wordCount" content="196">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust,panic,Result,错误," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="第04章 认识所有权 1 所有权 1.1 所有权  每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放  1.2 转移所有权 对变量进行赋值、作为参数传入函数、作为返回值从函数返回时，根据变量类型是否实现了Copy特性，有不同的行为
- 类型实现了Copy特性：资源被复制，原变量仍然有效 类型没有实现Copy特性：资源的所有权被转移，原变量失效  1.3 Copy特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Copy特性 无论是编译器自动为基础类型实现Copy特性，还是通过明确声明为自定义类型实现Copy特性，Copy行为都是按比特复制，这个行为不可更改 全部字段都实现了Copy特性时，自定义类型可以实现Copy特性  注意：是可以实现Copy特性，不是实现了Copy特性 在可以实现Copy特性的前提下，可以用两种方法之一实现Copy特性  使用#[derive(Copy)] 使用impl Clone for 类型名{}：不需要提供任何方法   Clone是Copy的基类型，实现Copy的类型，必须也实现Clone 对Copy特性的使用，总是自动的，无法明确要求使用Copy特性  1.4 Clone特性  所有基础类型（整数、浮点数、字符、布尔量）都实现了Clone特性 编译器自动为基础类型实现的Clone行为是按比特复制，这个行为不可改变 可以为任何自定义类型用两种方式之一实现Clone  使用#[derive(Clone)]：要求自定义类型的字段都是实现了Clone的类型 使用impl Clone for 类型名{}：需要提供clone方法：fn clone(&amp;self) -&gt; Self，其行为可以自行定义  对Clone行为的调用，总是手动的，编译器不会自动调用Clone特性  Copy和Clone的对比 相同点  编译器为所有基础类型自动实现了Copy和Clone特性 编译器为所有基础类型实现的Copy/Clone行为都是按比特复制，这个行为不可改变 编译器不会自动为自定义类型实现Copy/Clone特性，必须用两种方法之一明确声明 所有字段都实现了Copy/Clone特性时，可以通过#[derive]为自定义类型实现Copy/Clone特性 通过#[derive]实现Copy/Clone特性时，特性行为都是按比特复制，不需要额外提供方法代码  差异点  只有所有字段都实现了Copy的时候，自定义类型才能够实现Copy，且Copy行为是按比特复制，这个行为不可改变 无论是否所有字段都实现了Clone，都可以为自定义类型实现Clone，且通过impl Clone for 类型实现Clone时，可自定义特性行为 对Copy特性的调用，总是自动的：赋值、作为参数传入函数、作为返回值从函数传出时，  如果类型实现了Copy特性，则自动使用Copy特性 如果类型没有实现Copy特性，则转移所有权  对Clone特性的调用，总是手动的：必须明确地调用clone方法来实现对Clone特性的调用 Clone是Copy的基础特性，实现Copy特性时，必须同时实现Clone特性；反之则不成立：实现Clone特性时，不一定需要实现Copy特性"/>
+<meta name="twitter:title" content="认识所有权"/>
+<meta name="twitter:description" content="1 所有权 1.1 所有权 每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放 1.2 转移所有权 对变量进行赋值、"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -344,15 +342,18 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">认识所有权</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 196 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 1943 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
 
         
         
@@ -369,7 +370,7 @@ if (!doNotTrack) {
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#第04章-认识所有权">第04章 认识所有权</a>
+<li>
 <ul>
 <li><a href="#1-所有权">1 所有权</a>
 <ul>
@@ -396,8 +397,6 @@ if (!doNotTrack) {
     
     <div class="post-content">
       
-
-<h1 id="第04章-认识所有权">第04章 认识所有权</h1>
 
 <h2 id="1-所有权">1 所有权</h2>
 
@@ -565,12 +564,18 @@ for c in s.chars(){
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          <a href="https://www.rustcargo.com/tags/panic/">panic</a>
+          <a href="https://www.rustcargo.com/tags/result/">Result</a>
+          <a href="https://www.rustcargo.com/tags/%E9%94%99%E8%AF%AF/">错误</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/rust-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+          <a class="prev" href="/post/-%E7%AC%AC05%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -580,12 +585,12 @@ for c in s.chars(){
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">结构体</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/-%E7%AC%AC05%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/%E7%AC%AC03%E7%AB%A0-%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/">
+            <span class="next-text nav-default">通用编程概念</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

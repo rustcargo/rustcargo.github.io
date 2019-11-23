@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>面向对象编程 - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="第17章 面向对象编程 Rust与面向对象编程  封装数据与行为、隐藏细节：结构体与枚举 继承以共享代码：不支持 多态：通过特性实现  通过Box来使用特性 #![allow(dead_code)] trait Draw{ fn draw(&amp;amp;self); } struct Screen { components: Vec&amp;lt;Box&amp;lt;Draw&amp;gt;&amp;gt; } impl Screen{ fn run(&amp;amp;self){ for item in self.components.iter(){ item.draw(); } } } struct Button { width: u32, height: u32, label: String, } impl Draw for Button { fn draw(&amp;amp;self) {} } struct SelectBox { width: u32, height: u32, options: Vec&amp;lt;String&amp;gt;, } impl Draw for SelectBox { fn draw(&amp;amp;self) {} } pub fn main() { let screen = Screen { components: vec!" />
+  <meta name="description" content="第17章 面向对象编程 Rust与面向对象编程 封装数据与行为、隐藏细节：结构体与枚举 继承以共享代码：不支持 多态：通过特性实现 通过Box来使用特性" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -59,24 +59,26 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="第17章 面向对象编程 Rust与面向对象编程  封装数据与行为、隐藏细节：结构体与枚举 继承以共享代码：不支持 多态：通过特性实现  通过Box来使用特性 #![allow(dead_code)] trait Draw{ fn draw(&amp;self); } struct Screen { components: Vec&lt;Box&lt;Draw&gt;&gt; } impl Screen{ fn run(&amp;self){ for item in self.components.iter(){ item.draw(); } } } struct Button { width: u32, height: u32, label: String, } impl Draw for Button { fn draw(&amp;self) {} } struct SelectBox { width: u32, height: u32, options: Vec&lt;String&gt;, } impl Draw for SelectBox { fn draw(&amp;self) {} } pub fn main() { let screen = Screen { components: vec!" />
+<meta property="og:title" content="面向对象编程" />
+<meta property="og:description" content="第17章 面向对象编程 Rust与面向对象编程 封装数据与行为、隐藏细节：结构体与枚举 继承以共享代码：不支持 多态：通过特性实现 通过Box来使用特性" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/%E7%AC%AC17%E7%AB%A0-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content="第17章 面向对象编程 Rust与面向对象编程  封装数据与行为、隐藏细节：结构体与枚举 继承以共享代码：不支持 多态：通过特性实现  通过Box来使用特性 #![allow(dead_code)] trait Draw{ fn draw(&amp;self); } struct Screen { components: Vec&lt;Box&lt;Draw&gt;&gt; } impl Screen{ fn run(&amp;self){ for item in self.components.iter(){ item.draw(); } } } struct Button { width: u32, height: u32, label: String, } impl Draw for Button { fn draw(&amp;self) {} } struct SelectBox { width: u32, height: u32, options: Vec&lt;String&gt;, } impl Draw for SelectBox { fn draw(&amp;self) {} } pub fn main() { let screen = Screen { components: vec!">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="面向对象编程">
+<meta itemprop="description" content="第17章 面向对象编程 Rust与面向对象编程 封装数据与行为、隐藏细节：结构体与枚举 继承以共享代码：不支持 多态：通过特性实现 通过Box来使用特性">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="265">
 
 
 
-<meta itemprop="wordCount" content="111">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="第17章 面向对象编程 Rust与面向对象编程  封装数据与行为、隐藏细节：结构体与枚举 继承以共享代码：不支持 多态：通过特性实现  通过Box来使用特性 #![allow(dead_code)] trait Draw{ fn draw(&amp;self); } struct Screen { components: Vec&lt;Box&lt;Draw&gt;&gt; } impl Screen{ fn run(&amp;self){ for item in self.components.iter(){ item.draw(); } } } struct Button { width: u32, height: u32, label: String, } impl Draw for Button { fn draw(&amp;self) {} } struct SelectBox { width: u32, height: u32, options: Vec&lt;String&gt;, } impl Draw for SelectBox { fn draw(&amp;self) {} } pub fn main() { let screen = Screen { components: vec!"/>
+<meta name="twitter:title" content="面向对象编程"/>
+<meta name="twitter:description" content="第17章 面向对象编程 Rust与面向对象编程 封装数据与行为、隐藏细节：结构体与枚举 继承以共享代码：不支持 多态：通过特性实现 通过Box来使用特性"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -340,14 +342,17 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">面向对象编程</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 111 字 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 265 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -473,12 +478,15 @@ pub fn main() {
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E7%AC%AC16%E7%AB%A0-%E6%97%A0%E7%95%8F%E5%B9%B6%E5%8F%91/">
+          <a class="prev" href="/post/-%E7%AC%AC13%E7%AB%A0-%E9%97%AD%E5%8C%85%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -488,12 +496,12 @@ pub fn main() {
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">闭包与迭代器</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/%E7%AC%AC20%E7%AB%A0-%E6%9E%84%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8Bweb%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/-%E7%AC%AC19%E7%AB%A0-%E9%AB%98%E7%BA%A7%E7%89%B9%E5%BE%81/">
+            <span class="next-text nav-default">高级特征</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

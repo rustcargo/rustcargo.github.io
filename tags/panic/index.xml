@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>认识所有权</title>
+      <link>https://www.rustcargo.com/post/-%E7%AC%AC04%E7%AB%A0-%E8%AE%A4%E8%AF%86%E6%89%80%E6%9C%89%E6%9D%83/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/post/-%E7%AC%AC04%E7%AB%A0-%E8%AE%A4%E8%AF%86%E6%89%80%E6%9C%89%E6%9D%83/</guid>
+      <description>1 所有权 1.1 所有权 每个资源（值）都有一个所有者变量 任何时刻一个资源有且只有一个所有者 所有者离开作用域时，资源被释放 1.2 转移所有权 对变量进行赋值、</description>
+    </item>
+    
+    <item>
       <title>错误处理</title>
       <link>https://www.rustcargo.com/post/001_panic_error/</link>
       <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>

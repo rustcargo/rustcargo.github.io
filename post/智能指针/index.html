@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>智能指针 - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,14 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="1.Box Box&amp;lt;T&amp;gt;是指向堆中的指针。
-fn main() { let box = Box::new(3); println!(&amp;quot;{}&amp;quot;, box); }  在出了指针的作用域之后，指针和它指向的对象都将被释放。
-在本例中，box将在main函数之后被释放。
-由于Box&amp;lt;T&amp;gt;的大小是确定的(size类型的大小)，所以可以使用Box编写嵌套类型，比如实现链表。
-2.Deref trait 实现Deref这个trait可以重载解引用运算符(*)，这样可以把Deref trait当作普通引用。
-use std::ops::Deref; fn main() { let b=MyBox::new(12); assert_eq!(*b,12); } struct MyBox&amp;lt;T&amp;gt;(T); impl&amp;lt;T&amp;gt; MyBox&amp;lt;T&amp;gt; { fn new(value: T) -&amp;gt; Self { MyBox(value) } } impl&amp;lt;T&amp;gt; Deref for MyBox&amp;lt;T&amp;gt; { type Target = T; fn deref(&amp;amp;self) -&amp;gt; &amp;amp;Self::Target { &amp;amp;self.0 } }  当调用*b时，本质上是*(b.deref())，这样&amp;amp;引用和Deref引用的形式就统一了。
-函数和方法的隐式解引用强制多态 假设我们有一个函数，它需要一个&amp;amp;str类型的参数。
-fn print_name(name: &amp;amp;str){ println!(&amp;quot;name:{}&amp;quot;,name); }  改变main中的代码" />
+  <meta name="description" content="1.Box Box&amp;lt;T&amp;gt;是指向堆中的指针。 fn main() { let box = Box::new(3); println!(&amp;quot;{}&amp;quot;, box); } 在出了指针的作用域之后，指针和它指向的对象都将被释放。 在本例中，box将在m" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -66,45 +59,26 @@ fn print_name(name: &amp;amp;str){ println!(&amp;quot;name:{}&amp;quot;,name); }
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="1.Box Box&lt;T&gt;是指向堆中的指针。
-fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); }  在出了指针的作用域之后，指针和它指向的对象都将被释放。
-在本例中，box将在main函数之后被释放。
-由于Box&lt;T&gt;的大小是确定的(size类型的大小)，所以可以使用Box编写嵌套类型，比如实现链表。
-2.Deref trait 实现Deref这个trait可以重载解引用运算符(*)，这样可以把Deref trait当作普通引用。
-use std::ops::Deref; fn main() { let b=MyBox::new(12); assert_eq!(*b,12); } struct MyBox&lt;T&gt;(T); impl&lt;T&gt; MyBox&lt;T&gt; { fn new(value: T) -&gt; Self { MyBox(value) } } impl&lt;T&gt; Deref for MyBox&lt;T&gt; { type Target = T; fn deref(&amp;self) -&gt; &amp;Self::Target { &amp;self.0 } }  当调用*b时，本质上是*(b.deref())，这样&amp;引用和Deref引用的形式就统一了。
-函数和方法的隐式解引用强制多态 假设我们有一个函数，它需要一个&amp;str类型的参数。
-fn print_name(name: &amp;str){ println!(&quot;name:{}&quot;,name); }  改变main中的代码" />
+<meta property="og:title" content="智能指针" />
+<meta property="og:description" content="1.Box Box&lt;T&gt;是指向堆中的指针。 fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); } 在出了指针的作用域之后，指针和它指向的对象都将被释放。 在本例中，box将在m" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content="1.Box Box&lt;T&gt;是指向堆中的指针。
-fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); }  在出了指针的作用域之后，指针和它指向的对象都将被释放。
-在本例中，box将在main函数之后被释放。
-由于Box&lt;T&gt;的大小是确定的(size类型的大小)，所以可以使用Box编写嵌套类型，比如实现链表。
-2.Deref trait 实现Deref这个trait可以重载解引用运算符(*)，这样可以把Deref trait当作普通引用。
-use std::ops::Deref; fn main() { let b=MyBox::new(12); assert_eq!(*b,12); } struct MyBox&lt;T&gt;(T); impl&lt;T&gt; MyBox&lt;T&gt; { fn new(value: T) -&gt; Self { MyBox(value) } } impl&lt;T&gt; Deref for MyBox&lt;T&gt; { type Target = T; fn deref(&amp;self) -&gt; &amp;Self::Target { &amp;self.0 } }  当调用*b时，本质上是*(b.deref())，这样&amp;引用和Deref引用的形式就统一了。
-函数和方法的隐式解引用强制多态 假设我们有一个函数，它需要一个&amp;str类型的参数。
-fn print_name(name: &amp;str){ println!(&quot;name:{}&quot;,name); }  改变main中的代码">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="智能指针">
+<meta itemprop="description" content="1.Box Box&lt;T&gt;是指向堆中的指针。 fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); } 在出了指针的作用域之后，指针和它指向的对象都将被释放。 在本例中，box将在m">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="1722">
 
 
 
-<meta itemprop="wordCount" content="442">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="1.Box Box&lt;T&gt;是指向堆中的指针。
-fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); }  在出了指针的作用域之后，指针和它指向的对象都将被释放。
-在本例中，box将在main函数之后被释放。
-由于Box&lt;T&gt;的大小是确定的(size类型的大小)，所以可以使用Box编写嵌套类型，比如实现链表。
-2.Deref trait 实现Deref这个trait可以重载解引用运算符(*)，这样可以把Deref trait当作普通引用。
-use std::ops::Deref; fn main() { let b=MyBox::new(12); assert_eq!(*b,12); } struct MyBox&lt;T&gt;(T); impl&lt;T&gt; MyBox&lt;T&gt; { fn new(value: T) -&gt; Self { MyBox(value) } } impl&lt;T&gt; Deref for MyBox&lt;T&gt; { type Target = T; fn deref(&amp;self) -&gt; &amp;Self::Target { &amp;self.0 } }  当调用*b时，本质上是*(b.deref())，这样&amp;引用和Deref引用的形式就统一了。
-函数和方法的隐式解引用强制多态 假设我们有一个函数，它需要一个&amp;str类型的参数。
-fn print_name(name: &amp;str){ println!(&quot;name:{}&quot;,name); }  改变main中的代码"/>
+<meta name="twitter:title" content="智能指针"/>
+<meta name="twitter:description" content="1.Box Box&lt;T&gt;是指向堆中的指针。 fn main() { let box = Box::new(3); println!(&quot;{}&quot;, box); } 在出了指针的作用域之后，指针和它指向的对象都将被释放。 在本例中，box将在m"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -368,15 +342,18 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">智能指针</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 442 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 1722 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
 
         
         
@@ -705,12 +682,15 @@ fn main() {
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+          <a class="prev" href="/post/-%E7%AC%AC15%E7%AB%A0-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -720,12 +700,12 @@ fn main() {
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">智能指针</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/%E7%AC%AC02%E7%AB%A0-%E7%8C%9C%E7%8C%9C%E7%9C%8B/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/%E7%AC%AC14%E7%AB%A0-%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8Ecargo%E7%9A%84%E5%86%85%E5%AE%B9/">
+            <span class="next-text nav-default">更多关于cargo和crates.io</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

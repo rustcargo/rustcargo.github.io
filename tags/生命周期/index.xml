@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生命周期 on RustCargo - rust语言中文网</title>
+    <link>https://www.rustcargo.com/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+    <description>Recent content in 生命周期 on RustCargo - rust语言中文网</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Nov 2019 12:49:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.rustcargo.com/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>泛型、特性与生命周期</title>
+      <link>https://www.rustcargo.com/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
+      <description>第10章 泛型、特性与生命周期 0 前言 0.0 重复的代码 fn main() { let number_list = vec![34, 50, 25, 100, 65]; let mut largest = number_list[0]; for number in number_list { if number &amp;gt; largest { largest = number; } } println!(&amp;quot;The largest number is {}&amp;quot;, largest); let number_list = vec![102, 34, 6000, 89, 54, 2, 43,</description>
+    </item>
+    
+  </channel>
+</rss>

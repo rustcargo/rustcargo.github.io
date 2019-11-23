@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>模式匹配 on RustCargo - rust语言中文网</title>
+    <link>https://www.rustcargo.com/tags/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/</link>
+    <description>Recent content in 模式匹配 on RustCargo - rust语言中文网</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Nov 2019 12:49:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.rustcargo.com/tags/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>模式匹配</title>
+      <link>https://www.rustcargo.com/post/-%E7%AC%AC18%E7%AB%A0-%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/</link>
+      <pubDate>Wed, 20 Nov 2019 12:49:53 +0800</pubDate>
+      
+      <guid>https://www.rustcargo.com/post/-%E7%AC%AC18%E7%AB%A0-%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/</guid>
+      <description>第18章 模式匹配 1 使用模式的场合 1.1 match分支 match表达式必须是穷尽的(exhaustive) match VALUE { PATTERN =&amp;gt; EXPRESSION, PATTERN =&amp;gt; EXPRESSION, PATTERN =&amp;gt; EXPRESSION, } 1.2 if let条件</description>
+    </item>
+    
+  </channel>
+</rss>

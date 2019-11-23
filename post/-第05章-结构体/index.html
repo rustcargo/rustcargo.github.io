@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>结构体 - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&amp;quot;someone@example.com&amp;quot;), username: String::from(&amp;quot;someusername123&amp;quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&amp;quot;anotheremail@example.com&amp;quot;); }   只能标记结构体变量为mut，不能标记单个字段为mut，但可以对单个字段使用pub标记  1 变量名与字段名相同时结构体初始化的简略写法 fn build_user(email: String, username: String) -&amp;gt; User { User { email,// 完整写法是: email: email username,// 完整写法是: username: username active: true, sign_in_count: 1, } }  2 结构体更新语法 let user2 = User { email: String::from(&amp;quot;another@example." />
+  <meta name="description" content="第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&amp;quot;someone@example.com&amp;quot;), username: String::from(&amp;quot;someusername123&amp;quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&amp;quot;anotheremail@example.com&amp;quot;); } 只能标记结构体变量为mut，不能标记单个字段为mut，" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -59,24 +59,26 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&quot;someone@example.com&quot;), username: String::from(&quot;someusername123&quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&quot;anotheremail@example.com&quot;); }   只能标记结构体变量为mut，不能标记单个字段为mut，但可以对单个字段使用pub标记  1 变量名与字段名相同时结构体初始化的简略写法 fn build_user(email: String, username: String) -&gt; User { User { email,// 完整写法是: email: email username,// 完整写法是: username: username active: true, sign_in_count: 1, } }  2 结构体更新语法 let user2 = User { email: String::from(&quot;another@example." />
+<meta property="og:title" content="结构体" />
+<meta property="og:description" content="第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&quot;someone@example.com&quot;), username: String::from(&quot;someusername123&quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&quot;anotheremail@example.com&quot;); } 只能标记结构体变量为mut，不能标记单个字段为mut，" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/-%E7%AC%AC05%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content="第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&quot;someone@example.com&quot;), username: String::from(&quot;someusername123&quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&quot;anotheremail@example.com&quot;); }   只能标记结构体变量为mut，不能标记单个字段为mut，但可以对单个字段使用pub标记  1 变量名与字段名相同时结构体初始化的简略写法 fn build_user(email: String, username: String) -&gt; User { User { email,// 完整写法是: email: email username,// 完整写法是: username: username active: true, sign_in_count: 1, } }  2 结构体更新语法 let user2 = User { email: String::from(&quot;another@example.">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="结构体">
+<meta itemprop="description" content="第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&quot;someone@example.com&quot;), username: String::from(&quot;someusername123&quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&quot;anotheremail@example.com&quot;); } 只能标记结构体变量为mut，不能标记单个字段为mut，">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="930">
 
 
 
-<meta itemprop="wordCount" content="295">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust,结构体," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&quot;someone@example.com&quot;), username: String::from(&quot;someusername123&quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&quot;anotheremail@example.com&quot;); }   只能标记结构体变量为mut，不能标记单个字段为mut，但可以对单个字段使用pub标记  1 变量名与字段名相同时结构体初始化的简略写法 fn build_user(email: String, username: String) -&gt; User { User { email,// 完整写法是: email: email username,// 完整写法是: username: username active: true, sign_in_count: 1, } }  2 结构体更新语法 let user2 = User { email: String::from(&quot;another@example."/>
+<meta name="twitter:title" content="结构体"/>
+<meta name="twitter:description" content="第05章 结构体 #[allow(unused_variables)] #[allow(dead_code)] fn main() { struct User { username: String, email: String, sign_in_count: u64, active: bool, }; let mut user1 = User { email: String::from(&quot;someone@example.com&quot;), username: String::from(&quot;someusername123&quot;), active: true, sign_in_count: 1, }; user1.email = String::from(&quot;anotheremail@example.com&quot;); } 只能标记结构体变量为mut，不能标记单个字段为mut，"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -340,14 +342,17 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">结构体</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 295 字 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 930 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -582,12 +587,16 @@ fn square(size: u32) -&gt; Rect {
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          <a href="https://www.rustcargo.com/tags/%E7%BB%93%E6%9E%84%E4%BD%93/">结构体</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/-%E7%AC%AC04%E7%AB%A0-%E8%AE%A4%E8%AF%86%E6%89%80%E6%9C%89%E6%9D%83/">
+          <a class="prev" href="/post/%E7%AC%AC02%E7%AB%A0-%E7%8C%9C%E7%8C%9C%E7%9C%8B/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -597,12 +606,12 @@ fn square(size: u32) -&gt; Rect {
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">猜猜看</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/-%E7%AC%AC04%E7%AB%A0-%E8%AE%A4%E8%AF%86%E6%89%80%E6%9C%89%E6%9D%83/">
+            <span class="next-text nav-default">认识所有权</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

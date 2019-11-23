@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>通用编程概念 - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="第03章 通用编程概念 1 常量与变量 1.1 常量  用const定义常量时，必须给出类型 常量名称由大写字母和下划线组成，不遵循此规范会出编译警告：note: #[warn(non_upper_case_globals)] on by default 可以用#[allow(non_upper_case_globals)]注解关闭警告 可以在全局范围（非函数/方法中）定义常量
-#[allow(non_upper_case_globals)] mod a{ pub const pi : f64 = 3.14; } fn main(){ println!(&amp;quot;{}&amp;quot;,a::pi); }   1.2 变量  用let定义变量，通常使用自动类型推导，也可以变量名后加冒号和类型来指定类型 默认是不可变的，可以用mut指定是可变的 对不可变变量重新赋值会出现编译错误 可重复使用let定义同名变量，这就是 变量遮盖(shadow) ,遮盖时可修改变量类型 可以在全局范围定义变量，但是不建议这样使用，因为访问全局范围定义的静态变量时需要使用unsafe，详见第19章《高级特征》的1.3节  2 数据类型 2.1 标量类型 2.1.1 整数  字面整数值的类型默认为i32 字面数值类型中可以使用下划线以增加可读性 Rust 1.26.0 增加了i128和u128类型，由LLVM支持  2.1.2 浮点数  有f32和f64两种类型，字面值的类型默认为f64  2.1.3 布尔型  布尔型bool有两种值：true和false  2.1.4 字符类型  字符类型char的字面值用单引号表示 一个字符类型的值表示一个Unicode字符，可以表示中文  2." />
+  <meta name="description" content="第03章 通用编程概念 1 常量与变量 1.1 常量 用const定义常量时，必须给出类型 常量名称由大写字母和下划线组成，不遵循此规范会出编译警告：note" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -60,27 +59,26 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="第03章 通用编程概念 1 常量与变量 1.1 常量  用const定义常量时，必须给出类型 常量名称由大写字母和下划线组成，不遵循此规范会出编译警告：note: #[warn(non_upper_case_globals)] on by default 可以用#[allow(non_upper_case_globals)]注解关闭警告 可以在全局范围（非函数/方法中）定义常量
-#[allow(non_upper_case_globals)] mod a{ pub const pi : f64 = 3.14; } fn main(){ println!(&quot;{}&quot;,a::pi); }   1.2 变量  用let定义变量，通常使用自动类型推导，也可以变量名后加冒号和类型来指定类型 默认是不可变的，可以用mut指定是可变的 对不可变变量重新赋值会出现编译错误 可重复使用let定义同名变量，这就是 变量遮盖(shadow) ,遮盖时可修改变量类型 可以在全局范围定义变量，但是不建议这样使用，因为访问全局范围定义的静态变量时需要使用unsafe，详见第19章《高级特征》的1.3节  2 数据类型 2.1 标量类型 2.1.1 整数  字面整数值的类型默认为i32 字面数值类型中可以使用下划线以增加可读性 Rust 1.26.0 增加了i128和u128类型，由LLVM支持  2.1.2 浮点数  有f32和f64两种类型，字面值的类型默认为f64  2.1.3 布尔型  布尔型bool有两种值：true和false  2.1.4 字符类型  字符类型char的字面值用单引号表示 一个字符类型的值表示一个Unicode字符，可以表示中文  2." />
+<meta property="og:title" content="通用编程概念" />
+<meta property="og:description" content="第03章 通用编程概念 1 常量与变量 1.1 常量 用const定义常量时，必须给出类型 常量名称由大写字母和下划线组成，不遵循此规范会出编译警告：note" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/%E7%AC%AC03%E7%AB%A0-%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content="第03章 通用编程概念 1 常量与变量 1.1 常量  用const定义常量时，必须给出类型 常量名称由大写字母和下划线组成，不遵循此规范会出编译警告：note: #[warn(non_upper_case_globals)] on by default 可以用#[allow(non_upper_case_globals)]注解关闭警告 可以在全局范围（非函数/方法中）定义常量
-#[allow(non_upper_case_globals)] mod a{ pub const pi : f64 = 3.14; } fn main(){ println!(&quot;{}&quot;,a::pi); }   1.2 变量  用let定义变量，通常使用自动类型推导，也可以变量名后加冒号和类型来指定类型 默认是不可变的，可以用mut指定是可变的 对不可变变量重新赋值会出现编译错误 可重复使用let定义同名变量，这就是 变量遮盖(shadow) ,遮盖时可修改变量类型 可以在全局范围定义变量，但是不建议这样使用，因为访问全局范围定义的静态变量时需要使用unsafe，详见第19章《高级特征》的1.3节  2 数据类型 2.1 标量类型 2.1.1 整数  字面整数值的类型默认为i32 字面数值类型中可以使用下划线以增加可读性 Rust 1.26.0 增加了i128和u128类型，由LLVM支持  2.1.2 浮点数  有f32和f64两种类型，字面值的类型默认为f64  2.1.3 布尔型  布尔型bool有两种值：true和false  2.1.4 字符类型  字符类型char的字面值用单引号表示 一个字符类型的值表示一个Unicode字符，可以表示中文  2.">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="通用编程概念">
+<meta itemprop="description" content="第03章 通用编程概念 1 常量与变量 1.1 常量 用const定义常量时，必须给出类型 常量名称由大写字母和下划线组成，不遵循此规范会出编译警告：note">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="1345">
 
 
 
-<meta itemprop="wordCount" content="315">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="第03章 通用编程概念 1 常量与变量 1.1 常量  用const定义常量时，必须给出类型 常量名称由大写字母和下划线组成，不遵循此规范会出编译警告：note: #[warn(non_upper_case_globals)] on by default 可以用#[allow(non_upper_case_globals)]注解关闭警告 可以在全局范围（非函数/方法中）定义常量
-#[allow(non_upper_case_globals)] mod a{ pub const pi : f64 = 3.14; } fn main(){ println!(&quot;{}&quot;,a::pi); }   1.2 变量  用let定义变量，通常使用自动类型推导，也可以变量名后加冒号和类型来指定类型 默认是不可变的，可以用mut指定是可变的 对不可变变量重新赋值会出现编译错误 可重复使用let定义同名变量，这就是 变量遮盖(shadow) ,遮盖时可修改变量类型 可以在全局范围定义变量，但是不建议这样使用，因为访问全局范围定义的静态变量时需要使用unsafe，详见第19章《高级特征》的1.3节  2 数据类型 2.1 标量类型 2.1.1 整数  字面整数值的类型默认为i32 字面数值类型中可以使用下划线以增加可读性 Rust 1.26.0 增加了i128和u128类型，由LLVM支持  2.1.2 浮点数  有f32和f64两种类型，字面值的类型默认为f64  2.1.3 布尔型  布尔型bool有两种值：true和false  2.1.4 字符类型  字符类型char的字面值用单引号表示 一个字符类型的值表示一个Unicode字符，可以表示中文  2."/>
+<meta name="twitter:title" content="通用编程概念"/>
+<meta name="twitter:description" content="第03章 通用编程概念 1 常量与变量 1.1 常量 用const定义常量时，必须给出类型 常量名称由大写字母和下划线组成，不遵循此规范会出编译警告：note"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -344,15 +342,18 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">通用编程概念</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 315 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 1345 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
 
         
         
@@ -643,12 +644,15 @@ fn main() {
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E7%AC%AC02%E7%AB%A0-%E7%8C%9C%E7%8C%9C%E7%9C%8B/">
+          <a class="prev" href="/post/-%E7%AC%AC04%E7%AB%A0-%E8%AE%A4%E8%AF%86%E6%89%80%E6%9C%89%E6%9D%83/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -658,12 +662,12 @@ fn main() {
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">认识所有权</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/%E7%AC%AC06%E7%AB%A0-%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/%E7%AC%AC08%E7%AB%A0-%E9%80%9A%E7%94%A8%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B/">
+            <span class="next-text nav-default">通用集合类型</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

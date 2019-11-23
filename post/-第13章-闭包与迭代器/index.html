@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>闭包与迭代器 - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;amp;i32) -&amp;gt; i32 { t &#43; *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;amp;i32) -&amp;gt; i32 { t &#43; *x }; assert_eq!(vec![1,2,3].iter().fold(0,t),6); // 但通常使用更简洁的闭包: 通常不指定闭包参数和返回值的类型,而使用自动类型推导 // 而对于函数,不能省略参数和返回值类型 assert_eq!(vec![1,2,3].iter().fold(0,|a,x| a &#43; x),6); }  1.2 闭包可以捕获环境中的变量 fn main() { let x = 4; // 闭包可以使用环境中的变量 x let equal_to_x = |z| z == x; // 不合法: 函数不能使用环境中的变量 x,函数中 x 没有定义 //fn equal_to_x2(z : i32) -&amp;gt; bool { z == x } let y = 4; assert!" />
+  <meta name="description" content="第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;amp;i32) -&amp;gt; i32 { t &#43; *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;amp;i32) -&amp;gt; i32 {" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -59,24 +59,26 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;i32) -&gt; i32 { t &#43; *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;i32) -&gt; i32 { t &#43; *x }; assert_eq!(vec![1,2,3].iter().fold(0,t),6); // 但通常使用更简洁的闭包: 通常不指定闭包参数和返回值的类型,而使用自动类型推导 // 而对于函数,不能省略参数和返回值类型 assert_eq!(vec![1,2,3].iter().fold(0,|a,x| a &#43; x),6); }  1.2 闭包可以捕获环境中的变量 fn main() { let x = 4; // 闭包可以使用环境中的变量 x let equal_to_x = |z| z == x; // 不合法: 函数不能使用环境中的变量 x,函数中 x 没有定义 //fn equal_to_x2(z : i32) -&gt; bool { z == x } let y = 4; assert!" />
+<meta property="og:title" content="闭包与迭代器" />
+<meta property="og:description" content="第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;i32) -&gt; i32 { t &#43; *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;i32) -&gt; i32 {" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/-%E7%AC%AC13%E7%AB%A0-%E9%97%AD%E5%8C%85%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content="第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;i32) -&gt; i32 { t &#43; *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;i32) -&gt; i32 { t &#43; *x }; assert_eq!(vec![1,2,3].iter().fold(0,t),6); // 但通常使用更简洁的闭包: 通常不指定闭包参数和返回值的类型,而使用自动类型推导 // 而对于函数,不能省略参数和返回值类型 assert_eq!(vec![1,2,3].iter().fold(0,|a,x| a &#43; x),6); }  1.2 闭包可以捕获环境中的变量 fn main() { let x = 4; // 闭包可以使用环境中的变量 x let equal_to_x = |z| z == x; // 不合法: 函数不能使用环境中的变量 x,函数中 x 没有定义 //fn equal_to_x2(z : i32) -&gt; bool { z == x } let y = 4; assert!">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="闭包与迭代器">
+<meta itemprop="description" content="第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;i32) -&gt; i32 { t &#43; *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;i32) -&gt; i32 {">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="1070">
 
 
 
-<meta itemprop="wordCount" content="202">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust,闭包,迭代器," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;i32) -&gt; i32 { t &#43; *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;i32) -&gt; i32 { t &#43; *x }; assert_eq!(vec![1,2,3].iter().fold(0,t),6); // 但通常使用更简洁的闭包: 通常不指定闭包参数和返回值的类型,而使用自动类型推导 // 而对于函数,不能省略参数和返回值类型 assert_eq!(vec![1,2,3].iter().fold(0,|a,x| a &#43; x),6); }  1.2 闭包可以捕获环境中的变量 fn main() { let x = 4; // 闭包可以使用环境中的变量 x let equal_to_x = |z| z == x; // 不合法: 函数不能使用环境中的变量 x,函数中 x 没有定义 //fn equal_to_x2(z : i32) -&gt; bool { z == x } let y = 4; assert!"/>
+<meta name="twitter:title" content="闭包与迭代器"/>
+<meta name="twitter:description" content="第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;i32) -&gt; i32 { t &#43; *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;i32) -&gt; i32 {"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -340,15 +342,18 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">闭包与迭代器</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 202 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 1070 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
 
         
         
@@ -524,12 +529,17 @@ assert_eq!(v1_iter.next(), None);
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          <a href="https://www.rustcargo.com/tags/%E9%97%AD%E5%8C%85/">闭包</a>
+          <a href="https://www.rustcargo.com/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/">迭代器</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/-%E7%AC%AC10%E7%AB%A0-%E6%B3%9B%E5%9E%8B%E7%89%B9%E6%80%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+          <a class="prev" href="/post/%E7%AC%AC09%E7%AB%A0-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -539,12 +549,12 @@ assert_eq!(v1_iter.next(), None);
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">错误处理</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/-%E7%AC%AC15%E7%AB%A0-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/%E7%AC%AC17%E7%AB%A0-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
+            <span class="next-text nav-default">面向对象编程</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - RustCargo - rust语言中文网</title>
+  <title>关于迭代 - RustCargo - rust语言中文网</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Bauer" />
-  <meta name="description" content="关于迭代 for迭代  对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代时，对象的所有权不移动，迭代得到的是元素的引用  示例1：对集合类型的对象进行for迭代 fn main(){ use std::collections::HashMap; let mut scores = HashMap::new(); scores.insert(String::from(&amp;quot;Blue&amp;quot;), 10); scores.insert(String::from(&amp;quot;Yellow&amp;quot;), 50); // 1 这里对集合对象进行迭代 for k in scores{ println!(&amp;quot;{:?}&amp;quot;,k); // 得到的 k 是具有所有权的类型,这个解构语句移动了子元素的所有权 let (x,y) = k; println!(&amp;quot;{:?} =&amp;gt; {:?}&amp;quot;,x,y); // 这个语句错误: k 的所有权已经移动(解构到x,y中了),k已经无效 println!(&amp;quot;{:?}&amp;quot;,k); } // 这个语句错误: 前面的for语句移动了scores的所有权,scores已经无效 println!(&amp;quot;{:?}&amp;quot;,scores); }  示例2：对集合类型的对象引用进行for迭代 // 这里对集合对象的引用进行迭代 for k in &amp;amp;scores{ println!(&amp;quot;{:?}&amp;quot;,k); // 得到的 k 是引用类型,没有所有权,下面的解构语句不会移动子元素的所有权 let (x,y) = k; println!(&amp;quot;{:?} =&amp;gt; {:?" />
+  <meta name="description" content="关于迭代 for迭代 对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代" />
 
   <meta name="keywords" content="rust, llvm, Rust语言, 开源项目" />
 
@@ -59,24 +59,26 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="关于迭代 for迭代  对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代时，对象的所有权不移动，迭代得到的是元素的引用  示例1：对集合类型的对象进行for迭代 fn main(){ use std::collections::HashMap; let mut scores = HashMap::new(); scores.insert(String::from(&quot;Blue&quot;), 10); scores.insert(String::from(&quot;Yellow&quot;), 50); // 1 这里对集合对象进行迭代 for k in scores{ println!(&quot;{:?}&quot;,k); // 得到的 k 是具有所有权的类型,这个解构语句移动了子元素的所有权 let (x,y) = k; println!(&quot;{:?} =&gt; {:?}&quot;,x,y); // 这个语句错误: k 的所有权已经移动(解构到x,y中了),k已经无效 println!(&quot;{:?}&quot;,k); } // 这个语句错误: 前面的for语句移动了scores的所有权,scores已经无效 println!(&quot;{:?}&quot;,scores); }  示例2：对集合类型的对象引用进行for迭代 // 这里对集合对象的引用进行迭代 for k in &amp;scores{ println!(&quot;{:?}&quot;,k); // 得到的 k 是引用类型,没有所有权,下面的解构语句不会移动子元素的所有权 let (x,y) = k; println!(&quot;{:?} =&gt; {:?" />
+<meta property="og:title" content="关于迭代" />
+<meta property="og:description" content="关于迭代 for迭代 对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.rustcargo.com/post/%E5%85%B3%E4%BA%8E%E8%BF%AD%E4%BB%A3/" />
-<meta property="og:site_name" content="RustCargo - rust语言中文网" />
-<meta itemprop="name" content="">
-<meta itemprop="description" content="关于迭代 for迭代  对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代时，对象的所有权不移动，迭代得到的是元素的引用  示例1：对集合类型的对象进行for迭代 fn main(){ use std::collections::HashMap; let mut scores = HashMap::new(); scores.insert(String::from(&quot;Blue&quot;), 10); scores.insert(String::from(&quot;Yellow&quot;), 50); // 1 这里对集合对象进行迭代 for k in scores{ println!(&quot;{:?}&quot;,k); // 得到的 k 是具有所有权的类型,这个解构语句移动了子元素的所有权 let (x,y) = k; println!(&quot;{:?} =&gt; {:?}&quot;,x,y); // 这个语句错误: k 的所有权已经移动(解构到x,y中了),k已经无效 println!(&quot;{:?}&quot;,k); } // 这个语句错误: 前面的for语句移动了scores的所有权,scores已经无效 println!(&quot;{:?}&quot;,scores); }  示例2：对集合类型的对象引用进行for迭代 // 这里对集合对象的引用进行迭代 for k in &amp;scores{ println!(&quot;{:?}&quot;,k); // 得到的 k 是引用类型,没有所有权,下面的解构语句不会移动子元素的所有权 let (x,y) = k; println!(&quot;{:?} =&gt; {:?">
+<meta property="article:published_time" content="2019-11-20T12:49:53+08:00" />
+<meta property="article:modified_time" content="2019-11-20T12:49:53+08:00" /><meta property="og:site_name" content="RustCargo - rust语言中文网" />
+<meta itemprop="name" content="关于迭代">
+<meta itemprop="description" content="关于迭代 for迭代 对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代">
+
+
+<meta itemprop="datePublished" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-20T12:49:53&#43;08:00" />
+<meta itemprop="wordCount" content="1586">
 
 
 
-<meta itemprop="wordCount" content="569">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="rust," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="关于迭代 for迭代  对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代时，对象的所有权不移动，迭代得到的是元素的引用  示例1：对集合类型的对象进行for迭代 fn main(){ use std::collections::HashMap; let mut scores = HashMap::new(); scores.insert(String::from(&quot;Blue&quot;), 10); scores.insert(String::from(&quot;Yellow&quot;), 50); // 1 这里对集合对象进行迭代 for k in scores{ println!(&quot;{:?}&quot;,k); // 得到的 k 是具有所有权的类型,这个解构语句移动了子元素的所有权 let (x,y) = k; println!(&quot;{:?} =&gt; {:?}&quot;,x,y); // 这个语句错误: k 的所有权已经移动(解构到x,y中了),k已经无效 println!(&quot;{:?}&quot;,k); } // 这个语句错误: 前面的for语句移动了scores的所有权,scores已经无效 println!(&quot;{:?}&quot;,scores); }  示例2：对集合类型的对象引用进行for迭代 // 这里对集合对象的引用进行迭代 for k in &amp;scores{ println!(&quot;{:?}&quot;,k); // 得到的 k 是引用类型,没有所有权,下面的解构语句不会移动子元素的所有权 let (x,y) = k; println!(&quot;{:?} =&gt; {:?"/>
+<meta name="twitter:title" content="关于迭代"/>
+<meta name="twitter:description" content="关于迭代 for迭代 对集合类型的对象进行for迭代时，对象所有权移动到语句中，迭代得到的对象含有元素的所有权 对集合类型的对象引用进行for迭代"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -340,15 +342,18 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">关于迭代</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-11-20" class="post-time">
+          2019-11-20
         </time>
-        
-        <span class="more-meta"> 约 569 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <div class="post-category">
+            <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+            
+          </div>
+        <span class="more-meta"> 约 1586 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
 
         
         
@@ -604,12 +609,15 @@ vec![1,2,3,4,5,6,7,8,9,10].iter()
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://www.rustcargo.com/tags/rust/">rust</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/-%E7%AC%AC19%E7%AB%A0-%E9%AB%98%E7%BA%A7%E7%89%B9%E5%BE%81/">
+          <a class="prev" href="/post/%E7%AC%AC12%E7%AB%A0-%E4%B8%80%E4%B8%AAio%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A8%8B%E5%BA%8F/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -619,12 +627,12 @@ vec![1,2,3,4,5,6,7,8,9,10].iter()
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">一个IO项目：构建命令行程序</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+            <span class="next-text nav-default">小技巧</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

@@ -344,15 +344,18 @@ if (!doNotTrack) {
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/%E7%AC%AC07%E7%AB%A0-%E6%A8%A1%E5%9D%97/"></a>
+      <a class="post-link" href="/post/001_panic_error/">错误处理</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
       </time>
-      
-      <span class="more-meta"> 约 344 字 </span>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 989 字 </span>
       <span class="more-meta"> 预计阅读 2 分钟 </span>
       
       
@@ -363,11 +366,10 @@ if (!doNotTrack) {
   <div class="post-content">
     
     <div class="post-summary">
-      第07章 模块 1 mod与文件系统 1.1 入门  编译以文件为单位进行，无法直接使用定义在其他文件中的常量、变量、函数等 不像C/C++那样有头文件的概念，为使用其他文件中的常量、变量、函数等，必须将其他文件作为模块使用：mod &lt;文件名(省略.rs)&gt;; 必须用pub修饰需要在其他文件中使用的常量、变量、函数等 main.rs与math.rs在相同目录中，内容分别如下：
-mod math; fn main() { assert_eq!(math::add(1,2),3); assert_eq!(math::advance::square(2),4); }  // 允许没有被使用的代码，对整个文件有效（!表示对包含条目的条目有效） #![allow(dead_code)] pub const PI : f64 = 3.1415926; pub fn add(x : i32,y : i32) -&gt; i32{ x + y } pub fn sub(x : i32,y : i32) -&gt; i32{ x - y } pub mod advance{ pub fn square(x : i32) -&gt; i32 { x * x} }   1.
+      <p>就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。</p>
     </div>
     <div class="read-more">
-      <a href="/post/%E7%AC%AC07%E7%AB%A0-%E6%A8%A1%E5%9D%97/" class="read-more-link">阅读全文</a>
+      <a href="/post/001_panic_error/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -378,15 +380,54 @@ mod math; fn main() { assert_eq!(math::add(1,2),3); assert_eq!(math::advance::sq
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/%E7%AC%AC08%E7%AB%A0-%E9%80%9A%E7%94%A8%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B/"></a>
+      <a class="post-link" href="/post/%E7%AC%AC09%E7%AB%A0-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">错误处理</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
       </time>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 928 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
       
-      <span class="more-meta"> 约 519 字 </span>
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      第09章 错误处理 1 panic!与不可恢复错误 程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort） [profile.release] panic = 'abort'
+    </div>
+    <div class="read-more">
+      <a href="/post/%E7%AC%AC09%E7%AB%A0-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/-%E7%AC%AC13%E7%AB%A0-%E9%97%AD%E5%8C%85%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/">闭包与迭代器</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
+      </time>
+      <div class="post-category">
+          <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
+          
+        </div>
+      <span class="more-meta"> 约 1070 字 </span>
       <span class="more-meta"> 预计阅读 3 分钟 </span>
       
       
@@ -397,48 +438,10 @@ mod math; fn main() { assert_eq!(math::add(1,2),3); assert_eq!(math::advance::sq
   <div class="post-content">
     
     <div class="post-summary">
-      第08章 通用集合类型 集合(collections)类型可以包含多个值，集合元素是存储在堆中的，元素个数可以在运行中增加或者减少。本章介绍向量(vector)、字符串(String)和散列映射(HashMap)，其他集合类型请参考标准库的集合文档。
-1 vector  枚举类型可以存储多种不同类型的值，所以如果让vector元素的类型是枚举类型，则vector可以存储多种不同类型的元素
-#![allow(dead_code)] #![allow(unused_variables)] fn main(){ let v : Vec&lt;i32&gt; = Vec::new(); let mut v = vec![1, 2, 3]; v.push(5); v.push(6); v.push(7); v.push(8); { let x : &amp;i32 = &amp;v[0]; // 用get方法获取元素值时,若索引非法,则返回None,不会panic let x : Option&lt;&amp;i32&gt; = v.get(30); // 直接用索引访问不存在的元素会导致运行时panic(编译时无法检查下标是否越界) // let x = v[30]; // 正确: vector 的元素实现了Copy,赋值时自动复制的元素值 let x : i32 = v[0]; } // 遍历vector的时候,通常使用引用;如果不使用引用,则vector值的所有权被移动到for语句中 // 这可能违背所有权规则,导致编译失败 // 这里没有使用引用,则上面的大括号是必须的: 如果没有大括号,则上面的&amp;v[0]右值对v有引用 // 这里的for循环就不能移动所有权了 for x in v{ println!
+      第13章 闭包与迭代器 1 闭包 1.1 闭包与局部函数 fn main(){ // 不能这样定义匿名函数 // let t = fn(t:i32,x:&amp;i32) -&gt; i32 { t + *x }; // 这样(嵌套地)定义局部函数是合法的 fn t(t:i32,x: &amp;i32) -&gt; i32 {
     </div>
     <div class="read-more">
-      <a href="/post/%E7%AC%AC08%E7%AB%A0-%E9%80%9A%E7%94%A8%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/%E7%AC%AC09%E7%AB%A0-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 397 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      第09章 错误处理 1 panic!与不可恢复错误  程序panic!时，默认行为是展开（unwinding），但也可以选择终止（abort）
-[profile.release] panic = 'abort'  调试运行时，设置环境变量RUST_BACKTRACE=1，可以在panic!时显示详细的调用栈
-$ RUST_BACKTRACE=1 cargo run Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs Running `target/debug/panic` thread 'main' panicked at 'index out of bounds: the len is 3 but the index is 99', /checkout/src/liballoc/vec.rs:1555:10 stack backtrace: 0: std::sys:👿:backtrace::tracing:👿:unwind_backtrace at /checkout/src/libstd/sys/unix/backtrace/tracing/gcc_s.rs:49 1: std::sys_common::backtrace::_print at /checkout/src/libstd/sys_common/backtrace.rs:71 ......   2 Result与可恢复错误  标准库中的std::result::Result表示可恢复错误
-pub enum Result&lt;T, E&gt; { Ok(T), Err(E), }  use std::fs::File; use std::io::ErrorKind; pub fn main() { let f = File::open(&quot;hello.
-    </div>
-    <div class="read-more">
-      <a href="/post/%E7%AC%AC09%E7%AB%A0-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="read-more-link">阅读全文</a>
+      <a href="/post/-%E7%AC%AC13%E7%AB%A0-%E9%97%AD%E5%8C%85%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -504,14 +507,6 @@ pub enum Result&lt;T, E&gt; { Ok(T), Err(E), }  use std::fs::File; use std::io::
       
       <li >
         <a href="/page/9/">9</a>
-      </li>
-      
-      <li >
-        <a href="/page/10/">10</a>
-      </li>
-      
-      <li >
-        <a href="/page/11/">11</a>
       </li>
       
     </ul>

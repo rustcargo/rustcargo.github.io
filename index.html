@@ -388,7 +388,7 @@ if (!doNotTrack) {
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/001_panic_error/">错误处理</a>
+      <a class="post-link" href="/post/mut/">mut</a>
     </h1>
     
     <div class="post-meta">
@@ -399,8 +399,8 @@ if (!doNotTrack) {
           <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
           
         </div>
-      <span class="more-meta"> 约 989 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
+      <span class="more-meta"> 约 331 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
@@ -410,10 +410,10 @@ if (!doNotTrack) {
   <div class="post-content">
     
     <div class="post-summary">
-      <p>就像大多数编程语言一样，Rust 让程序员使用一种特定方式来处理错误。一般来说，错误处理分为两类途径：异常和返回值。Rust 使用的是返回值。</p>
+      mut 特性中的mut trait Demo{ fn add(a:i32,b:i32) -&gt; i32; } struct ImplIt{} impl Demo for ImplIt{ // 注意: 这里用mut修饰b,但是Demo特性定义中没有mut fn add(a:i32,mut b:i32)-&gt;i32{ b = 100; a+b } } mut与引用 let a = 123;
     </div>
     <div class="read-more">
-      <a href="/post/001_panic_error/" class="read-more-link">阅读全文</a>
+      <a href="/post/mut/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -424,19 +424,19 @@ if (!doNotTrack) {
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/002%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96/">字符串格式化</a>
+      <a class="post-link" href="/post/rust-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">Rust 中的类型转换</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2018-11-20" class="post-time">
-        2018-11-20
+      <time datetime="2019-11-20" class="post-time">
+        2019-11-20
       </time>
       <div class="post-category">
           <a href="https://www.rustcargo.com/categories/rust%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"> Rust语言基础 </a>
           
         </div>
-      <span class="more-meta"> 约 1460 字 </span>
-      <span class="more-meta"> 预计阅读 3 分钟 </span>
+      <span class="more-meta"> 约 1860 字 </span>
+      <span class="more-meta"> 预计阅读 4 分钟 </span>
       
       
       
@@ -446,10 +446,10 @@ if (!doNotTrack) {
   <div class="post-content">
     
     <div class="post-summary">
-      字符串格式化 参考std::fmt模块的文档 模块std::fmt包含对format!宏的运行时支持，而format!宏是print!系列宏的基
+      1. as 运算符 as 运算符有点像 C 中的强制类型转换，区别在于， 它只能用于原始类型(i32 、i64 、f32 、 f64 、 u8 、 u32 、 char 等类型),并且它是安全的。 例
     </div>
     <div class="read-more">
-      <a href="/post/002%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96/" class="read-more-link">阅读全文</a>
+      <a href="/post/rust-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -515,14 +515,6 @@ if (!doNotTrack) {
       
       <li >
         <a href="/page/9/">9</a>
-      </li>
-      
-      <li >
-        <a href="/page/10/">10</a>
-      </li>
-      
-      <li >
-        <a href="/page/11/">11</a>
       </li>
       
     </ul>
